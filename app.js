@@ -8,6 +8,7 @@ const getUploadFileExt = require('./utils/getUploadFileExt');
 const getUploadFileName = require('./utils/getUploadFileName');
 const checkDirExist = require('./utils/checkDirExist');
 const getUploadDirName = require('./utils/getUploadDirName');
+const hashFile = require('./utils/hashFile')
 
 const app = new koa();
 
@@ -27,7 +28,7 @@ app.use(koaBody({
     keepExtensions: true,
     maxFieldsSize: 2 * 1024 * 1024,
     onFileBegin: (name, file) => {
-      // console.log(file);
+      console.log(file);
       // 获取文件后缀
       const ext = getUploadFileExt(file.name);
       // 最终要保存到的文件夹目录
@@ -37,10 +38,12 @@ app.use(koaBody({
       checkDirExist(dir);
       // 获取文件名称
       const fileName = getUploadFileName(ext);
+      // const fileName = file.name;
       // 重新覆盖 file.path 属性
       file.path = `${dir}/${fileName}`;
       app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
       app.context.uploadpath[name] = `${dirName}/${fileName}`;
+      hashFile(fileName)
     },
   }
 }));
