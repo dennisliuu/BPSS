@@ -38,7 +38,7 @@ app.use(koaBody({
       file.path = `${dir}/${fileName}`;
       app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
       app.context.uploadpath[name] = `${dirName}/${fileName}`;
-      hashFile(fileName, fileName)
+      hashFile(dirName, fileName)
     },
   }
 }));
