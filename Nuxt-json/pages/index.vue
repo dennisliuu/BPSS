@@ -22,12 +22,14 @@ export default {
   },
   methods: {
     async fetchSomething() {
-      const res = await this.$axios.$get("http://localhost:3004/posts");
+      const res = await this.$axios.$get("https://cors-anywhere.herokuapp.com/jsondb-i34k4ivt1.now.sh/db.json");
       this.res = res;
-      for (let i = 0; i < res.length; i++) {
-        const element = res[i];
-        console.log(element.id)
-      }
+      console.log(res.post);
+      
+      // for (let i = 0; i < res.length; i++) {
+      //   const element = res[i];
+      //   console.log(element.id)
+      // }
     }
   }
 };
