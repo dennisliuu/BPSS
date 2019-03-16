@@ -3,15 +3,15 @@ var fs = require('fs')
 
 /**
  * @param  {String} paperTXT
- * @param  {String} pri
+ * @param  {String} pub
  */
-function decryptFile(paperTXT, pri) {
+function decryptFile(paperTXT, pub) {
 	return new Promise(resolve => {
-	    fs.readFile(pri, (err, data) => {
+	    fs.readFile(pub, (err, data) => {
             if (err) console.log(err)
     	    var key = new NodeRSA(data);
         	let rawText = key.decryptPublic(paperTXT, 'utf8');
-        	console.log('解密：' + rawText);
+        	console.log('解密 (S)：' + rawText);
 			resolve(rawText)
     	})
 	})

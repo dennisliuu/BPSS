@@ -19,15 +19,26 @@ const readTXT = () => {
 	})
 }
 
+let L = []
+
 async function main() {
 	let paperTXT = await readTXT()
-	console.log('文本：' + paperTXT);	
+	console.log('文本 (N)：' + paperTXT)
 	let eA = await encryptFile(paperTXT, './pem/privateA.pem')
+	L.push('A')
+	console.log('L = ' + L)
 	let dAB = await decryptFile(eA, './pem/publicAB.pem')
 	let eAB = await encryptFile(eA, './pem/privateB.pem')
+	L.push('B')
+	console.log('L = ' + L)
 	let dBC = await decryptFile(eAB, './pem/publicBC.pem')
 	let dC2 = await decryptFile(dBC, './pem/publicAB.pem')
-	let ans = await encryptFile(eAB, './pem/privateC.pem')
+	let eC = await encryptFile(eAB, './pem/privateC.pem')
+	L.push('C')
+	console.log('L = ' + L)
+	let ans = await encryptFile(eC, './pem/privateB.pem')
+	L.push('B')
+	console.log('L = ' + L)
 }
 
 main()
