@@ -22,10 +22,9 @@ export default {
   },
   methods: {
     async fetchSomething() {
-      const res = await this.$axios.$get("https://cors-anywhere.herokuapp.com/jsondb-i34k4ivt1.now.sh/db.json");
+      const res = await this.$axios.$get("https://still-dawn-33202.herokuapp.com/db");
       this.res = res;
-      console.log(res.post);
-      
+      console.log(res);
       // for (let i = 0; i < res.length; i++) {
       //   const element = res[i];
       //   console.log(element.id)
