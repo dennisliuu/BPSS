@@ -1,4 +1,0 @@
-FROM mongo
-MAINTAINER dennis
-
-CMD ["echo", "THIS IS DOCKER W/ MONGO RUNNING"]
