@@ -5,7 +5,7 @@ db.on('error', console.error.bind(console, 'connection error:'));
 
 const Cat = mongoose.model('Cat', { name: String });
 
-const kitty = new Cat({ name: 'Zildjian' });
+const kitty = new Cat({ name: 'dennis' });
 kitty.save((err, kitty) => {
 	console.log(err, kitty)
 })
