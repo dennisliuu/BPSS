@@ -17,21 +17,21 @@ def readPdf(fileName):
     return out.replace('\n', '')
 
 
-def hashTXT(fileName, pdfContent):
-    listfile = pdfContent.split('.')
-
+def hashTXT(fileName, pdfContent, se):
+    listfile = pdfContent.split(se)
     hashedList = []
     for i in listfile:
         hashedList.append(hashlib.sha256(i.encode('utf-8')).hexdigest())
     
-    with open(fileName.split('.')[0] + '_hash.txt', 'w') as out:
+    with open(fileName + '_hash.txt', 'w') as out:
         for i in hashedList:
             out.write("%s\n" % i)
 
 def main():
     fileName = sys.argv[1]
     pdfContent = readPdf(fileName)
-    hashValue = hashTXT(fileName, pdfContent)
+    hashTXT(fileName.split('.')[0], pdfContent, '.')
+    hashTXT(fileName.split('.')[0] + '_all', pdfContent, '\n')
 
 if __name__ == '__main__':
     main()
