@@ -4,17 +4,12 @@ const nunjucks = require('koa-nunjucks-2');
 const koaBody = require('koa-body');
 const router = require('./routes');
 
-const mongoose = require('mongoose'); mongoose.connect('mongodb://140.124.72.190:27017/test', {useNewUrlParser: true});  
-const Cat = mongoose.model('Cat', { name: String });  
-const kitty = new Cat({ name: 'koa-test' }); 
-kitty.save().then(() => console.log('meow'));
-const kittyFromDb = Cat.find({ name: 'Zildjian'}, function (err, res) { console.log(res) })
-
 const getUploadFileExt = require('./utils/getUploadFileExt');
 const getUploadFileName = require('./utils/getUploadFileName');
 const checkDirExist = require('./utils/checkDirExist');
 const getUploadDirName = require('./utils/getUploadDirName');
 const hashFile = require('./utils/hashFile')
+const postMongoDB = require('./utils/postMongoDB')
 
 const app = new koa();
 
@@ -44,7 +39,8 @@ app.use(koaBody({
       file.path = `${dir}/${fileName}`;
       app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
       app.context.uploadpath[name] = `${dirName}/${fileName}`;
-      hashFile(dirName, fileName)
+      // hashFile(dirName, fileName)
+      postMongoDB(file.name)
     },
   }
 }));

@@ -2,12 +2,12 @@ const Koa = require('koa')
 const consola = require('consola')
 const { Nuxt, Builder } = require('nuxt')
 
-const mongoose = require('mongoose'); mongoose.connect('mongodb://localhost:27017/test', {useNewUrlParser: true});  
+const mongoose = require('mongoose'); mongoose.connect('mongodb://140.124.72.190:27017/test', {useNewUrlParser: true});  
 const Cat = mongoose.model('Cat', { name: String });  
 const kitty = new Cat({ name: 'Zildjian' }); 
 kitty.save().then(() => console.log('meow'));
 
-const kittyFromDb = Cat.find({ name: 'Zildjian'}, function (err, res) { console.log(res) })
+// const kittyFromDb = Cat.find({ name: 'Zildjian'}, function (err, res) { console.log(res) })
 
 
 const app = new Koa()
