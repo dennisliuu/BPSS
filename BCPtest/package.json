@@ -2,13 +2,24 @@
   "name": "bcptest",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "chaining.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+	"start": "node chaining.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "node-rsa": "^1.0.5"
+  },
+  "bin": "chaining.js",
+  "pkg": {
+  	"assets": [
+		"util/*",
+		"store/*"
+	],
+	"target": [
+		"node10-linux"
+	]
   }
 }
