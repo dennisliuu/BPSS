@@ -1,5 +1,0 @@
-//const NetcatServer = require('netcat/server')
-const NetcatClient = require('netcat/client')
-//const nc = new NetcatServer()
-const nc2 = new NetcatClient()
-nc2.port(2389).connect().pipe(outputStream)
