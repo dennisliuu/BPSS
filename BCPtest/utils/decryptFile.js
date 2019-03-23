@@ -11,7 +11,7 @@ function decryptFile(paperTXT, pub) {
             if (err) console.log(err)
     	    var key = new NodeRSA(data);
         	let rawText = key.decryptPublic(paperTXT, 'utf8');
-        	console.log('解密 (S)：' + rawText);
+        	// console.log('解密 (S)：' + rawText);
 			resolve(rawText)
     	})
 	})
