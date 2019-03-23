@@ -1,5 +1,0 @@
-const NetcatServer = require('netcat/server')
-//const NetcatClient = require('netcat/client')
-const nc = new NetcatServer()
-//const nc2 = new NetcatClient()
-nc.port(2389).serve('server.jpg').listen()
