@@ -12,7 +12,7 @@ generator('C', 'CD')
 
 const readTXT = () => {
     return new Promise(resolve => {
-		fs.readFile('./store/paper.txt', 'utf8', (err, data) => {
+		fs.readFile('./store/test.pdf', 'base64', (err, data) => {
 			if (err) console.log(err)
 			resolve(data)
 		})
