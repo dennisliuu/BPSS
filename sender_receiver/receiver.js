@@ -36,6 +36,7 @@ const main = async () => {
   switch (process.argv[2]) {
     case "r":
       await rec();
+      console.log((fs.readFileSync("buf/send.txt", "utf8")).split('\n\n')[0])
       break
     case "d":
       let paperTXT = await readTXT()
@@ -44,6 +45,9 @@ const main = async () => {
       console.log(paperTXT);
       await buf2pdf(paperTXT)
       break
+    // case "t":
+    //   console.log((fs.readFileSync("buf/send.txt", "utf8")).split('\n\n')[0])
+    //   break
     default:
       console.log("No argv call " + process.argv[2] + ".")
   }
