@@ -3,7 +3,7 @@ const NodeRSA = require('node-rsa')
 const encryptFile = require('../BCPtest/utils/encryptFile')
 
 const pdf2bs64 = () => {
-	let buffer = fs.readFileSync('./store/paper.pdf')
+	let buffer = fs.readFileSync('./store/send.pdf')
 	let bs64 = buffer.toString('base64')
 	fs.writeFile('buf/send.txt', bs64, err => {
 		if (err) throw err
@@ -33,7 +33,6 @@ const sender = (eA) => {
 const main = async () => {
 	await pdf2bs64()
 	let paperTXT = await readTXT()
-	// console.log('文本 (N)：' + paperTXT)
 	let eA = await encryptFile(paperTXT, '../BCPtest/pem/privateA.pem')
 	sender(eA)
 }
