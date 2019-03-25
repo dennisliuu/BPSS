@@ -12,9 +12,9 @@ generator('C', 'CD')
 
 const readTXT = () => {
     return new Promise(resolve => {
-		fs.readFile('./store/test.pdf', (err, data) => {
+		fs.readFile('./store/paper.txt', 'utf8', (err, data) => {
 			if (err) console.log(err)
-			resolve(data.toString('base64'))
+			resolve(data)
 		})
 	})
 }
@@ -23,11 +23,13 @@ let L = []
 
 async function main() {
 	let paperTXT = await readTXT()
-	// console.log('文本 (N)：' + paperTXT)
+	console.log('文本 (N)：' + paperTXT)
 	let eA = await encryptFile(paperTXT, './pem/privateA.pem')
+	console.log(eA)
 	L.push('A')
 	console.log('L = ' + L)
 	let dAB = await decryptFile(eA, './pem/publicAB.pem')
+	console.log(dAB)
 	let eAB = await encryptFile(eA, './pem/privateB.pem')
 	L.push('B')
 	console.log('L = ' + L)

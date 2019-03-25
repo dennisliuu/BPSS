@@ -26,7 +26,7 @@ const buf2pdf = (paperTXT) => {
 
 const readTXT = () => {
     return new Promise(resolve => {
-		fs.readFile('buf/send.txt', (err, data) => {
+		fs.readFile('buf/send.txt', 'utf8', (err, data) => {
 			if (err) console.log(err)
 			resolve(data)
 		})
@@ -40,17 +40,17 @@ const main = async () => {
     else if (process.argv[2] == 'd') {
         let paperTXT = await readTXT()
         let key = path.join('pem', 'private.pem')
-        console.log(key)
-        paperTXT = await decryptFile(paperTXT, key)
+        
+        paperTXT = await decryptFile(paperTXT, '../BCPtest/pem/publicAB.pem')
         // for (let i = 3; i < process.argv.length; i++) {
         //     const e = process.argv[i]
         //     let paperTXT = await decryptFile(paperTXT, e)    
         // }
-        // console.log(paperTXT)
+        console.log(paperTXT)
         // await buf2pdf(paperTXT)
     }
     else {
-        console.log("NOT CORRECT ARGV")
+        console.log("NOT Correct argv")
     }
 }
 
