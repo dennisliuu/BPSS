@@ -40,8 +40,11 @@ const main = async () => {
       break
     case "d":
       let paperTXT = await readTXT()
+      let paperHead = paperTXT.split('\n\n')[0]
+      let paperBody = paperTXT.split('\n\n').slice(-1).pop()
+
       let key = path.join("pem", "public.pem")
-      paperTXT = await decryptFile(paperTXT, key)
+      paperTXT = await decryptFile(paperBody, key)
       console.log(paperTXT);
       await buf2pdf(paperTXT)
       break
