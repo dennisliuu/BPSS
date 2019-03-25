@@ -39,9 +39,7 @@
     </nav>
 
     <div
-      class="jumbotron jumbotron-fluid parallax-landing shadow-lg bg-white rounded"
-      style="height: 130%"
-    >
+      class="jumbotron jumbotron-fluid parallax-landing shadow-lg bg-white rounded">
       <div class="container demo" id="section01">
         <h1 class="display-3 font-weight-bold text-center">BlockChain Paper Submission</h1>
         <p
@@ -147,12 +145,13 @@
                       ></textarea>
                     </div>
                     <div class="input-group input-group-sm mb-3">
-                      <textarea
+                      <input
+                        type="text"
                         class="form-control"
-                        aria-label="public key"
-                        placeholder="public key"
-                        id="publickey"
-                      ></textarea>
+                        aria-label="orcid"
+                        placeholder="orcid"
+                        id="orcid"
+                      >
                     </div>
                   </div>
 
@@ -238,7 +237,7 @@ export default {
 <style type="text/css">
 html,
 body {
-  height: 100%;
+  /* height: 100%; */
   margin: 0;
   padding: 0;
   scroll-behavior: smooth;
@@ -256,7 +255,7 @@ body {
 .upload {
   position: relative;
   width: 540px;
-  height: 700px;
+  height: 600px;
   box-sizing: border-box;
   border-radius: 5px;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -646,8 +645,9 @@ body {
   overflow: hidden;
   position: relative;
   width: 100%;
+  height: 100vh;
   background-image: linear-gradient(to bottom, #222 0%, transparent 100%),
-    url(https://i.pinimg.com/originals/39/35/32/393532260f8031c9006015d145365d77.jpg);
+    url('https://i.pinimg.com/originals/39/35/32/393532260f8031c9006015d145365d77.jpg');
   background-attachment: fixed;
   background-size: cover;
   -moz-background-size: cover;
@@ -682,7 +682,7 @@ body {
 }
 
 #section01 a {
-  padding-top: 60px;
+  padding-top: 65px;
 }
 
 #section01 a span {
