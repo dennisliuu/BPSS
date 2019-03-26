@@ -3,4 +3,4 @@ public/
 pem/
 store/
 buf/
-gitSync/
+gitSync.sh
