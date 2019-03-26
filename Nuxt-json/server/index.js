@@ -8,11 +8,11 @@ const kitty = new Cat({ name: 'Zildjian', orcid: "0000-0000-1234-567" });
 kitty.save().then(() => console.log('meow'));
 
 // const kittyFromDb = Cat.find({ name: 'Zildjian'}, function (err, res) { console.log(res) })
-Cat.find({}, function(err, users){
+Cat.find({}, function(err, cats){
   if(err){
     console.log(err);
   } else{
-    console.log(users)
+    console.log(cats)
   }
 })
 
