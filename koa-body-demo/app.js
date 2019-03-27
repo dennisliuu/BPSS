@@ -45,6 +45,9 @@ app.use(koaBody({
   }
 }));
 app.use(router.routes()).use(router.allowedMethods());
+app.use(ctx => {
+  ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
+});
 
 
 app.listen(3000, () => {
