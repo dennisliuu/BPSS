@@ -611,34 +611,35 @@ body {
 							</p>
 						</header>
 						<div class="px-3 pt-1">
-							<form action="/" enctype="multipart/form-data" method="post">
+							<form action="/" enctype="multipart/form-data" method="POST">
 							<div class="form-group">
 								<div class="input-group my-3">
-									<input type="text" aria-label="First name" class="form-control" placeholder="First name"
+									<input type="text" name="fName" aria-label="First name" class="form-control" placeholder="First name"
 									id="firstName">
-									<input type="text" aria-label="Last name" class="form-control" placeholder="Last name"
+									<input type="text" name="lName" aria-label="Last name" class="form-control" placeholder="Last name"
 									id="lastName">
 								</div>
 								<div class="input-group mb-3">
-									<input type="tel" class="form-control" placeholder="Phone" id="phoneNum">
+									<input type="tel" name="tel" class="form-control" placeholder="Phone" id="phoneNum">
 								</div>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" placeholder="Organization" id="organization">
+									<input type="text" name="org" class="form-control" placeholder="Organization" id="organization">
 								</div>
 								<div class="input-group mb-3">
-									<input type="text" class="form-control" aria-label="email" placeholder="test@email.com" id="email">
+									<input type="text" name="email" class="form-control" aria-label="email" placeholder="test@email.com" id="email">
 								</div>
 								<div class="input-group mb-3">
-									<textarea class="form-control noresize" style="resize: none" aria-label="abstract"
+									<textarea class="form-control noresize" name="abstract" style="resize: none" aria-label="abstract"
 									placeholder="Abstract" id="abstract"></textarea>
 								</div>
 								<div class="input-group input-group-sm mb-3">
-									<textarea class="form-control" aria-label="OCRID" placeholder="ORCID"
+									<textarea class="form-control" name="orcid" aria-label="OCRID" placeholder="ORCID"
 									id="ORCID"></textarea>
 								</div>
 							</div>
 
 							<button type="submit" class="float-right btn btn-primary" onclick="myFunction()">Submit !</button>
+							</form>
 						</div>
 					</div>
 				</div>
