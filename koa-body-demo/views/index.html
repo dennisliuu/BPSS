@@ -1,692 +1,799 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Upload Page UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:100,300"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+    />
 
-<head>
-	<meta charset="UTF-8">
-	<title>Upload Page UI</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-	<link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
-	<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:100,300'>
-	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css'>
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
 
-	<link rel="stylesheet" href="css/style.css">
-</head>
+  <style type="text/css">
+    html,
+    body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      scroll-behavior: smooth;
+    }
 
-<style type="text/css">
-html,
-body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-	scroll-behavior: smooth;
-}
+    body {
+      font-family: "Roboto", sans-serif;
+      background: url("https://www.muralswallpaper.com/app/uploads/explorer-kids-map-childrens-room-820x532.jpg")
+        no-repeat center center fixed;
+      background-size: cover;
+      justify-content: center;
+      align-items: center;
+    }
 
-body {
-	font-family: "Roboto", sans-serif;
-	background: url("https://www.muralswallpaper.com/app/uploads/explorer-kids-map-childrens-room-820x532.jpg") no-repeat center center fixed;
-	background-size: cover;
-	justify-content: center;
-	align-items: center;
-}
+    .upload {
+      position: relative;
+      width: 540px;
+      height: 700px;
+      box-sizing: border-box;
+      border-radius: 5px;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+      padding-bottom: 20px;
+      background: #fff;
+      -webkit-animation: fadeup 0.5s 0.5s ease both;
+      animation: fadeup 0.5s 0.5s ease both;
+      -webkit-transform: translateY(20px);
+      transform: translateY(20px);
+      opacity: 0;
+    }
+    .upload .upload-files header {
+      background: #f8f9fa;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      text-align: center;
+    }
+    .upload .upload-files header p {
+      color: rgba(0, 0, 0, 0.9);
+      font-size: 28px;
+      margin: 0;
+      padding: 30px 0;
+    }
+    .upload .upload-files header p i {
+      -webkit-transform: translateY(20px);
+      transform: translateY(20px);
+      opacity: 0;
+      font-size: 28px;
+      -webkit-animation: fadeup 0.5s 1s ease both;
+      animation: fadeup 0.5s 1s ease both;
+    }
+    .upload .upload-files header p .up {
+      font-weight: bold;
+      -webkit-transform: translateX(-20px);
+      transform: translateX(-20px);
+      display: inline-block;
+      opacity: 0;
+      -webkit-animation: faderight 0.5s 1.5s ease both;
+      animation: faderight 0.5s 1.5s ease both;
+    }
+    .upload .upload-files header p .load {
+      display: inline-block;
+      font-weight: 100;
+      margin-left: -8px;
+      -webkit-transform: translateX(-20px);
+      transform: translateX(-20px);
+      opacity: 0;
+      -webkit-animation: faderight 1s 1.5s ease both;
+      animation: faderight 1s 1.5s ease both;
+    }
+    .upload .upload-files header p .notify {
+      display: inline-block;
+      font-weight: 100;
+      -webkit-transform: translateX(-20px);
+      transform: translateX(-20px);
+      opacity: 0;
+      -webkit-animation: faderight 1s 1.5s ease both;
+      animation: faderight 1s 1.5s ease both;
+    }
+    .upload .upload-files .body {
+      text-align: center;
+      padding: 30px 0;
+    }
+    .upload .upload-files .body.hidden {
+      display: none;
+    }
+    .upload .upload-files .body input {
+      visibility: hidden;
+    }
+    .upload .upload-files .body i {
+      font-size: 50px;
+      color: lightgray;
+    }
+    .upload .upload-files .body p {
+      font-size: 16px;
+      padding-top: 15px;
+      line-height: 1.4;
+    }
+    .upload .upload-files .body p b,
+    .upload .upload-files .body p a {
+      text-decoration: none;
+    }
+    .upload .upload-files .body.active {
+      border: dashed 2px #f8f9fa;
+    }
+    .upload .upload-files .body.active i {
+      box-shadow: 0 0 0 -3px #fff, 0 0 0 lightgray,
+        0 0 0 -3px rgba(0, 0, 0, 0.9), 0 0 0 lightgray;
+      -webkit-animation: file 0.5s ease both;
+      animation: file 0.5s ease both;
+    }
+    @-webkit-keyframes file {
+      50% {
+        box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray,
+          -8px 8px 0 -3px #fff, -8px 8px 0 lightgray;
+      }
+      75%,
+      100% {
+        box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray,
+          -16px 16px 0 -3px #fff, -16px 16px 0 lightgray;
+      }
+    }
+    @keyframes file {
+      50% {
+        box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray,
+          -8px 8px 0 -3px #fff, -8px 8px 0 lightgray;
+      }
+      75%,
+      100% {
+        box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray,
+          -16px 16px 0 -3px #fff, -16px 16px 0 lightgray;
+      }
+    }
+    .upload .upload-files .body.active .pointer-none {
+      pointer-events: none;
+    }
+    .upload .upload-files footer {
+      width: 100%;
+      margin: 0 auto;
+      height: 0;
+    }
+    .upload .upload-files footer .divider {
+      margin: 0 auto;
+      width: 0;
+      border-top: solid 4px #eef0f3;
+      text-align: center;
+      overflow: hidden;
+      transition: width 0.5s ease;
+    }
+    .upload .upload-files footer .divider span {
+      display: inline-block;
+      -webkit-transform: translateY(-50px);
+      transform: translateY(-50px);
+      padding-top: 8px;
+    }
+    .upload .upload-files footer.hasFiles {
+      height: auto;
+    }
+    .upload .upload-files footer.hasFiles .divider {
+      width: 100%;
+    }
+    .upload .upload-files footer.hasFiles .divider span {
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      transition: -webkit-transform 0.5s 0.5s ease;
+      transition: transform 0.5s 0.5s ease;
+      transition: transform 0.5s 0.5s ease, -webkit-transform 0.5s 0.5s ease;
+    }
+    .upload .upload-files footer .list-files {
+      width: 320px;
+      margin: 0 auto;
+      margin-top: 15px;
+      padding-left: 5px;
+      text-align: center;
+      overflow-x: hidden;
+      overflow-y: auto;
+      max-height: 210px;
+    }
+    .upload .upload-files footer .list-files::-webkit-scrollbar-track {
+      background-color: rgba(211, 211, 211, 0.25);
+    }
+    .upload .upload-files footer .list-files::-webkit-scrollbar {
+      width: 4px;
+      background-color: rgba(211, 211, 211, 0.25);
+    }
+    .upload .upload-files footer .list-files::-webkit-scrollbar-thumb {
+      background-color: rgba(248, 249, 250, 0.5);
+    }
+    .upload .upload-files footer .list-files .file {
+      width: 300px;
+      min-height: 50px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      opacity: 0;
+      -webkit-animation: fade 0.35s ease both;
+      animation: fade 0.35s ease both;
+    }
+    .upload .upload-files footer .list-files .file .name {
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      overflow: hidden;
+      width: 80px;
+      text-align: left;
+    }
+    .upload .upload-files footer .list-files .file .progress {
+      width: 175px;
+      height: 5px;
+      border: solid 1px lightgray;
+      border-radius: 2px;
+      background: linear-gradient(
+          to left,
+          rgba(248, 249, 250, 0.2),
+          rgba(248, 249, 250, 0.8)
+        )
+        no-repeat;
+      background-size: 100% 100%;
+    }
+    .upload .upload-files footer .list-files .file .progress.active {
+      -webkit-animation: progress 30s linear;
+      animation: progress 30s linear;
+    }
+    @-webkit-keyframes progress {
+      from {
+        background-size: 0 100%;
+      }
+      to {
+        background-size: 100% 100%;
+      }
+    }
+    @keyframes progress {
+      from {
+        background-size: 0 100%;
+      }
+      to {
+        background-size: 100% 100%;
+      }
+    }
+    .upload .upload-files footer .list-files .file .done {
+      cursor: pointer;
+      width: 40px;
+      height: 40px;
+      background: #007bff;
+      border-radius: 50%;
+      margin-left: -10px;
+      -webkit-transform: scale(0);
+      transform: scale(0);
+      position: relative;
+    }
+    .upload .upload-files footer .list-files .file .done:before {
+      content: "View";
+      position: absolute;
+      top: 0;
+      left: -5px;
+      font-size: 24px;
+      opacity: 0;
+    }
+    .upload .upload-files footer .list-files .file .done:hover:before {
+      transition: all 0.25s ease;
+      top: -30px;
+      opacity: 1;
+    }
+    .upload .upload-files footer .list-files .file .done.anim {
+      -webkit-animation: done1 0.5s ease forwards;
+      animation: done1 0.5s ease forwards;
+    }
+    .upload .upload-files footer .list-files .file .done.anim #path {
+      -webkit-animation: done2 2.5s 0.5s ease forwards;
+      animation: done2 2.5s 0.5s ease forwards;
+    }
+    .upload .upload-files footer .list-files .file .done #path {
+      stroke-dashoffset: 7387.59423828125;
+      stroke-dasharray: 7387.59423828125 7387.59423828125;
+      stroke: #fff;
+      fill: transparent;
+      stroke-width: 50px;
+    }
+    @-webkit-keyframes done2 {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    @keyframes done2 {
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+    @-webkit-keyframes done1 {
+      50% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 1;
+      }
+      80% {
+        -webkit-transform: scale(0.25);
+        transform: scale(0.25);
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 1;
+      }
+    }
+    @keyframes done1 {
+      50% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 1;
+      }
+      80% {
+        -webkit-transform: scale(0.25);
+        transform: scale(0.25);
+        opacity: 1;
+      }
+      100% {
+        -webkit-transform: scale(0.5);
+        transform: scale(0.5);
+        opacity: 1;
+      }
+    }
+    .upload .upload-files footer .importar {
+      outline: none;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 20px;
+      margin: auto;
+      border: solid 1px #f8f9fa;
+      color: #007bff;
+      background: transparent;
+      padding: 8px 15px;
+      border-radius: 4px;
+      font-family: Roboto;
+      line-height: 1;
+      cursor: pointer;
+      -webkit-transform: translateY(15px);
+      transform: translateY(15px);
+      opacity: 0;
+      visibility: hidden;
+      margin-left: calc(50% - 60px);
+    }
+    .upload .upload-files footer .importar.active {
+      transition: opacity 0.5s 1.5s ease, background,
+        -webkit-transform 0.5s 1.5s ease;
+      transition: transform 0.5s 1.5s ease, opacity 0.5s 1.5s ease, background;
+      transition: transform 0.5s 1.5s ease, opacity 0.5s 1.5s ease, background,
+        -webkit-transform 0.5s 1.5s ease;
+      -webkit-transform: translateY(0);
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    .upload .upload-files footer .importar:hover {
+      background: #f8f9fa;
+      color: rgba(0, 0, 0, 0.9);
+    }
+    @-webkit-keyframes fadeup {
+      to {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    @keyframes fadeup {
+      to {
+        -webkit-transform: translateY(0);
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    @-webkit-keyframes faderight {
+      to {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    @keyframes faderight {
+      to {
+        -webkit-transform: translateX(0);
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+    @-webkit-keyframes fade {
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes fade {
+      to {
+        opacity: 1;
+      }
+    }
+    @media (max-width: 400px) {
+      .upload {
+        width: 100%;
+        height: 100%;
+      }
+    }
 
-.upload {
-	position: relative;
-	width: 540px;
-	height: 700px;
-	box-sizing: border-box;
-	border-radius: 5px;
-	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-	padding-bottom: 20px;
-	background: #fff;
-	-webkit-animation: fadeup 0.5s 0.5s ease both;
-	animation: fadeup 0.5s 0.5s ease both;
-	-webkit-transform: translateY(20px);
-	transform: translateY(20px);
-	opacity: 0;
-}
-.upload .upload-files header {
-	background: #f8f9fa;
-	border-top-left-radius: 5px;
-	border-top-right-radius: 5px;
-	text-align: center;
-}
-.upload .upload-files header p {
-	color: rgba(0, 0, 0, 0.9);
-	font-size: 28px;
-	margin: 0;
-	padding: 30px 0;
-}
-.upload .upload-files header p i {
-	-webkit-transform: translateY(20px);
-	transform: translateY(20px);
-	opacity: 0;
-	font-size: 28px;
-	-webkit-animation: fadeup 0.5s 1s ease both;
-	animation: fadeup 0.5s 1s ease both;
-}
-.upload .upload-files header p .up {
-	font-weight: bold;
-	-webkit-transform: translateX(-20px);
-	transform: translateX(-20px);
-	display: inline-block;
-	opacity: 0;
-	-webkit-animation: faderight 0.5s 1.5s ease both;
-	animation: faderight 0.5s 1.5s ease both;
-}
-.upload .upload-files header p .load {
-	display: inline-block;
-	font-weight: 100;
-	margin-left: -8px;
-	-webkit-transform: translateX(-20px);
-	transform: translateX(-20px);
-	opacity: 0;
-	-webkit-animation: faderight 1s 1.5s ease both;
-	animation: faderight 1s 1.5s ease both;
-}
-.upload .upload-files header p .notify {
-	display: inline-block;
-	font-weight: 100;
-	-webkit-transform: translateX(-20px);
-	transform: translateX(-20px);
-	opacity: 0;
-	-webkit-animation: faderight 1s 1.5s ease both;
-	animation: faderight 1s 1.5s ease both;
-}
-.upload .upload-files .body {
-	text-align: center;
-	padding: 30px 0;
-}
-.upload .upload-files .body.hidden {
-	display: none;
-}
-.upload .upload-files .body input {
-	visibility: hidden;
-}
-.upload .upload-files .body i {
-	font-size: 50px;
-	color: lightgray;
-}
-.upload .upload-files .body p {
-	font-size: 16px;
-	padding-top: 15px;
-	line-height: 1.4;
-}
-.upload .upload-files .body p b,
-.upload .upload-files .body p a {
-	text-decoration: none;
-}
-.upload .upload-files .body.active {
-	border: dashed 2px #f8f9fa;
-}
-.upload .upload-files .body.active i {
-	box-shadow: 0 0 0 -3px #fff, 0 0 0 lightgray, 0 0 0 -3px rgba(0, 0, 0, 0.9), 0 0 0 lightgray;
-	-webkit-animation: file 0.5s ease both;
-	animation: file 0.5s ease both;
-}
-@-webkit-keyframes file {
-	50% {
-		box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray, -8px 8px 0 -3px #fff, -8px 8px 0 lightgray;
-	}
-	75%,
-	100% {
-		box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray, -16px 16px 0 -3px #fff, -16px 16px 0 lightgray;
-	}
-}
-@keyframes file {
-	50% {
-		box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray, -8px 8px 0 -3px #fff, -8px 8px 0 lightgray;
-	}
-	75%,
-	100% {
-		box-shadow: -8px 8px 0 -3px #fff, -8px 8px 0 lightgray, -16px 16px 0 -3px #fff, -16px 16px 0 lightgray;
-	}
-}
-.upload .upload-files .body.active .pointer-none {
-	pointer-events: none;
-}
-.upload .upload-files footer {
-	width: 100%;
-	margin: 0 auto;
-	height: 0;
-}
-.upload .upload-files footer .divider {
-	margin: 0 auto;
-	width: 0;
-	border-top: solid 4px #eef0f3;
-	text-align: center;
-	overflow: hidden;
-	transition: width 0.5s ease;
-}
-.upload .upload-files footer .divider span {
-	display: inline-block;
-	-webkit-transform: translateY(-50px);
-	transform: translateY(-50px);
-	padding-top: 8px;
-}
-.upload .upload-files footer.hasFiles {
-	height: auto;
-}
-.upload .upload-files footer.hasFiles .divider {
-	width: 100%;
-}
-.upload .upload-files footer.hasFiles .divider span {
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
-	transition: -webkit-transform 0.5s 0.5s ease;
-	transition: transform 0.5s 0.5s ease;
-	transition: transform 0.5s 0.5s ease, -webkit-transform 0.5s 0.5s ease;
-}
-.upload .upload-files footer .list-files {
-	width: 320px;
-	margin: 0 auto;
-	margin-top: 15px;
-	padding-left: 5px;
-	text-align: center;
-	overflow-x: hidden;
-	overflow-y: auto;
-	max-height: 210px;
-}
-.upload .upload-files footer .list-files::-webkit-scrollbar-track {
-	background-color: rgba(211, 211, 211, 0.25);
-}
-.upload .upload-files footer .list-files::-webkit-scrollbar {
-	width: 4px;
-	background-color: rgba(211, 211, 211, 0.25);
-}
-.upload .upload-files footer .list-files::-webkit-scrollbar-thumb {
-	background-color: rgba(248, 249, 250, 0.5);
-}
-.upload .upload-files footer .list-files .file {
-	width: 300px;
-	min-height: 50px;
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	opacity: 0;
-	-webkit-animation: fade 0.35s ease both;
-	animation: fade 0.35s ease both;
-}
-.upload .upload-files footer .list-files .file .name {
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
-	width: 80px;
-	text-align: left;
-}
-.upload .upload-files footer .list-files .file .progress {
-	width: 175px;
-	height: 5px;
-	border: solid 1px lightgray;
-	border-radius: 2px;
-	background: linear-gradient(to left, rgba(248, 249, 250, 0.2), rgba(248, 249, 250, 0.8)) no-repeat;
-	background-size: 100% 100%;
-}
-.upload .upload-files footer .list-files .file .progress.active {
-	-webkit-animation: progress 30s linear;
-	animation: progress 30s linear;
-}
-@-webkit-keyframes progress {
-	from {
-		background-size: 0 100%;
-	}
-	to {
-		background-size: 100% 100%;
-	}
-}
-@keyframes progress {
-	from {
-		background-size: 0 100%;
-	}
-	to {
-		background-size: 100% 100%;
-	}
-}
-.upload .upload-files footer .list-files .file .done {
-	cursor: pointer;
-	width: 40px;
-	height: 40px;
-	background: #007bff;
-	border-radius: 50%;
-	margin-left: -10px;
-	-webkit-transform: scale(0);
-	transform: scale(0);
-	position: relative;
-}
-.upload .upload-files footer .list-files .file .done:before {
-	content: "View";
-	position: absolute;
-	top: 0;
-	left: -5px;
-	font-size: 24px;
-	opacity: 0;
-}
-.upload .upload-files footer .list-files .file .done:hover:before {
-	transition: all 0.25s ease;
-	top: -30px;
-	opacity: 1;
-}
-.upload .upload-files footer .list-files .file .done.anim {
-	-webkit-animation: done1 0.5s ease forwards;
-	animation: done1 0.5s ease forwards;
-}
-.upload .upload-files footer .list-files .file .done.anim #path {
-	-webkit-animation: done2 2.5s 0.5s ease forwards;
-	animation: done2 2.5s 0.5s ease forwards;
-}
-.upload .upload-files footer .list-files .file .done #path {
-	stroke-dashoffset: 7387.59423828125;
-	stroke-dasharray: 7387.59423828125 7387.59423828125;
-	stroke: #fff;
-	fill: transparent;
-	stroke-width: 50px;
-}
-@-webkit-keyframes done2 {
-	to {
-		stroke-dashoffset: 0;
-	}
-}
-@keyframes done2 {
-	to {
-		stroke-dashoffset: 0;
-	}
-}
-@-webkit-keyframes done1 {
-	50% {
-		-webkit-transform: scale(0.5);
-		transform: scale(0.5);
-		opacity: 1;
-	}
-	80% {
-		-webkit-transform: scale(0.25);
-		transform: scale(0.25);
-		opacity: 1;
-	}
-	100% {
-		-webkit-transform: scale(0.5);
-		transform: scale(0.5);
-		opacity: 1;
-	}
-}
-@keyframes done1 {
-	50% {
-		-webkit-transform: scale(0.5);
-		transform: scale(0.5);
-		opacity: 1;
-	}
-	80% {
-		-webkit-transform: scale(0.25);
-		transform: scale(0.25);
-		opacity: 1;
-	}
-	100% {
-		-webkit-transform: scale(0.5);
-		transform: scale(0.5);
-		opacity: 1;
-	}
-}
-.upload .upload-files footer .importar {
-	outline: none;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 20px;
-	margin: auto;
-	border: solid 1px #f8f9fa;
-	color: #007bff;
-	background: transparent;
-	padding: 8px 15px;
-	border-radius: 4px;
-	font-family: Roboto;
-	line-height: 1;
-	cursor: pointer;
-	-webkit-transform: translateY(15px);
-	transform: translateY(15px);
-	opacity: 0;
-	visibility: hidden;
-	margin-left: calc(50% - 60px);
-}
-.upload .upload-files footer .importar.active {
-	transition: opacity 0.5s 1.5s ease, background, -webkit-transform 0.5s 1.5s ease;
-	transition: transform 0.5s 1.5s ease, opacity 0.5s 1.5s ease, background;
-	transition: transform 0.5s 1.5s ease, opacity 0.5s 1.5s ease, background, -webkit-transform 0.5s 1.5s ease;
-	-webkit-transform: translateY(0);
-	transform: translateY(0);
-	opacity: 1;
-	visibility: visible;
-}
-.upload .upload-files footer .importar:hover {
-	background: #f8f9fa;
-	color: rgba(0, 0, 0, 0.9);
-}
-@-webkit-keyframes fadeup {
-	to {
-		-webkit-transform: translateY(0);
-		transform: translateY(0);
-		opacity: 1;
-	}
-}
-@keyframes fadeup {
-	to {
-		-webkit-transform: translateY(0);
-		transform: translateY(0);
-		opacity: 1;
-	}
-}
-@-webkit-keyframes faderight {
-	to {
-		-webkit-transform: translateX(0);
-		transform: translateX(0);
-		opacity: 1;
-	}
-}
-@keyframes faderight {
-	to {
-		-webkit-transform: translateX(0);
-		transform: translateX(0);
-		opacity: 1;
-	}
-}
-@-webkit-keyframes fade {
-	to {
-		opacity: 1;
-	}
-}
-@keyframes fade {
-	to {
-		opacity: 1;
-	}
-}
-@media (max-width: 400px) {
-	.upload {
-		width: 100%;
-		height: 100%;
-	}
-}
+    .parallax-landing {
+      color: #fff;
+      padding-top: 200px;
+      padding-bottom: 200px;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+      background-image: linear-gradient(to bottom, #222 0%, transparent 100%),
+        url(https://i.pinimg.com/originals/39/35/32/393532260f8031c9006015d145365d77.jpg);
+      background-attachment: fixed;
+      background-size: cover;
+      -moz-background-size: cover;
+      -webkit-background-size: cover;
+      background-repeat: no-repeat;
+      background-position: top center;
+    }
 
-.parallax-landing {
-	color: #fff;
-	padding-top: 200px;
-	padding-bottom: 200px;
-	overflow: hidden;
-	position: relative;
-	width: 100%;
-	background-image: linear-gradient(to bottom, #222 0%, transparent 100%), url(https://i.pinimg.com/originals/39/35/32/393532260f8031c9006015d145365d77.jpg);
-	background-attachment: fixed;
-	background-size: cover;
-	-moz-background-size: cover;
-	-webkit-background-size: cover;
-	background-repeat: no-repeat;
-	background-position: top center;
-}
+    .landing-section {
+      position: relative;
+      width: 100%;
+      height: 100%;
+    }
 
-.landing-section {
-	position: relative;
-	width: 100%;
-	height: 100%;
-}
+    .demo a {
+      position: absolute;
+      bottom: 20px;
+      left: 49%;
+      z-index: 2;
+      display: inline-block;
+      -webkit-transform: translate(0, -50%);
+      transform: translate(0, -50%);
+      color: #fff;
+      font: normal 400 20px/1 "Josefin Sans", sans-serif;
+      letter-spacing: 0.1em;
+      text-decoration: none;
+      transition: opacity 0.3s;
+    }
 
-.demo a {
-	position: absolute;
-	bottom: 20px;
-	left: 49%;
-	z-index: 2;
-	display: inline-block;
-	-webkit-transform: translate(0, -50%);
-	transform: translate(0, -50%);
-	color: #fff;
-	font: normal 400 20px/1 'Josefin Sans', sans-serif;
-	letter-spacing: .1em;
-	text-decoration: none;
-	transition: opacity .3s;
-}
+    .demo a:hover {
+      opacity: 0.5;
+    }
 
-.demo a:hover {
-	opacity: .5;
-}
+    #section01 a {
+      padding-top: 60px;
+    }
 
-#section01 a {
-	padding-top: 60px;
-}
+    #section01 a span {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      width: 24px;
+      height: 24px;
+      margin-left: -12px;
+      border-left: 3px solid #fff;
+      border-bottom: 3px solid #fff;
+      -webkit-transform: rotate(-45deg);
+      transform: rotate(-45deg);
+      -webkit-animation: sdb04 1.5s infinite;
+      animation: sdb04 1.5s infinite;
+      box-sizing: border-box;
+    }
 
-#section01 a span {
-	position: absolute;
-	top: 0;
-	left: 50%;
-	width: 24px;
-	height: 24px;
-	margin-left: -12px;
-	border-left: 3px solid #fff;
-	border-bottom: 3px solid #fff;
-	-webkit-transform: rotate(-45deg);
-	transform: rotate(-45deg);
-	-webkit-animation: sdb04 1.5s infinite;
-	animation: sdb04 1.5s infinite;
-	box-sizing: border-box;
-}
+    @-webkit-keyframes sdb04 {
+      0% {
+        -webkit-transform: rotate(-45deg) translate(0, 0);
+      }
+      20% {
+        -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+      }
+      40% {
+        -webkit-transform: rotate(-45deg) translate(0, 0);
+      }
+    }
+    @keyframes sdb04 {
+      0% {
+        -webkit-transform: rotate(-45deg) translate(0, 0);
+        transform: rotate(-45deg) translate(0, 0);
+      }
+      20% {
+        -webkit-transform: rotate(-45deg) translate(-10px, 10px);
+        transform: rotate(-45deg) translate(-10px, 10px);
+      }
+      40% {
+        -webkit-transform: rotate(-45deg) translate(0, 0);
+        transform: rotate(-45deg) translate(0, 0);
+      }
+    }
 
-@-webkit-keyframes sdb04 {
-	0% {
-		-webkit-transform: rotate(-45deg) translate(0, 0);
-	}
-	20% {
-		-webkit-transform: rotate(-45deg) translate(-10px, 10px);
-	}
-	40% {
-		-webkit-transform: rotate(-45deg) translate(0, 0);
-	}
-}
-@keyframes sdb04 {
-	0% {
-		-webkit-transform: rotate(-45deg) translate(0, 0);
-		transform: rotate(-45deg) translate(0, 0);
-	}
-	20% {
-		-webkit-transform: rotate(-45deg) translate(-10px, 10px);
-		transform: rotate(-45deg) translate(-10px, 10px);
-	}
-	40% {
-		-webkit-transform: rotate(-45deg) translate(0, 0);
-		transform: rotate(-45deg) translate(0, 0);
-	}
-}
+    .nav_show {
+      transition: all 300ms ease-in-out;
+    }
 
-.nav_show {
-	transition: all 300ms ease-in-out;
-}
+    .up {
+      -webkit-transform: translateY(-200px);
+      transform: translateY(-200px);
+      transition: all 300ms ease-in-out;
+    }
 
-.up {
-	-webkit-transform: translateY(-200px);
-	transform: translateY(-200px);
-	transition: all 300ms ease-in-out;
-}
+    #orcid {
+      height: 210px;
+      min-height: 210px;
+      max-height: 210px;
+    }
 
-#orcid {
-	height: 210px;
-	min-height: 210px;
-	max-height: 210px;
-}
+    @media (max-width: 575.98px) {
+      .d-sm-none-custom {
+        display: none !important;
+      }
+    }
+    @media (max-width: 575.98px) {
+      .upload {
+        width: 400;
+      }
+    }
+    @media (min-width: 576px) and (max-width: 767.98px) {
+      .upload {
+        width: 600px;
+      }
+    }
+    @media (min-width: 768px) and (max-width: 991.98px) {
+      .upload {
+        width: 800px;
+      }
+    }
+    @media (min-width: 992px) and (max-width: 1199.98px) {
+      .upload {
+        width: 1000px;
+      }
+    }
+  </style>
 
-@media (max-width: 575.98px) {
-	.d-sm-none-custom {
-		display: none !important;
-	}
-}
-@media (max-width: 575.98px) {
-	.upload {
-		width: 400;
-	}
-}
-@media (min-width: 576px) and (max-width: 767.98px) {
-	.upload {
-		width: 600px;
-	}
-}
-@media (min-width: 768px) and (max-width: 991.98px) {
-	.upload {
-		width: 800px;
-	}
-}
-@media (min-width: 992px) and (max-width: 1199.98px) {
-	.upload {
-		width: 1000px;
-	}
-}
+  <body>
+    <nav
+      id="main_nav"
+      class="navbar navbar-expand-sm fixed-top navbar-light bg-light shadow p-3 bg-white"
+    >
+      <a id="brandLogo" class="navbar-brand pl-5 d-sm-none-custom" href="#">
+        <img
+          src="https://myweb.ntut.edu.tw/~t105360725/%E7%BF%92%E8%BF%91%E5%B9%B3%E5%B0%8F%E7%86%8A%E7%B6%AD%E5%B0%BC"
+          style="width: 80px"
+          class="d-inline-block align-top"
+        />
+      </a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="#section02">Submission</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section03">Publications</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#section04">How</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
 
-</style>
+    <div
+      class="jumbotron jumbotron-fluid parallax-landing shadow-lg bg-white rounded"
+      style="height: 130%"
+    >
+      <div class="container demo" id="section01">
+        <h1 class="display-3 font-weight-bold text-center">
+          BlockChain Paper Submission
+        </h1>
+        <p class="lead text-center">
+          Add user by privete key. We guarantee your submission has absolute
+          right author order
+        </p>
+        <a href="#section02"><span></span>S T A R T</a>
+      </div>
+    </div>
 
-<body>
-	<nav id="main_nav" class="navbar navbar-expand-sm fixed-top navbar-light bg-light shadow p-3 bg-white">
-		<a id="brandLogo" class="navbar-brand pl-5 d-sm-none-custom" href="#">
-			<img src="https://myweb.ntut.edu.tw/~t105360725/%E7%BF%92%E8%BF%91%E5%B9%B3%E5%B0%8F%E7%86%8A%E7%B6%AD%E5%B0%BC" style="width: 80px" class="d-inline-block align-top">	
-		</a>
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-		aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-		<span class="navbar-toggler-icon"></span>
-	</button>
-	<div class="collapse navbar-collapse" id="navbarNav">
-		<ul class="navbar-nav">
-			<li class="nav-item active">
-				<a class="nav-link" href="#section02">Submission</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#section03">Publications</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" href="#section04">How</a>
-			</li>
-		</ul>
-	</div>
-</nav>
+    <div class="container">
+      <div id="section02" class="px-3 pt-5" style="height:100%">
+        <div class="row justify-content-center">
+          <!-- 		<div class="col-1"></div> -->
+          <div class="d-flex align-content-center  flex-wrap">
+            <form action="/" enctype="multipart/form-data" method="POST">
+              <div class="upload">
+                <div class="upload-files">
+                  <header>
+                    <p>
+                      <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+                      <span class="up">up</span>
+                      <span class="load">load</span>
+                    </p>
+                  </header>
+                  <div class="body mt-5" id="drop">
+                    <i
+                      class="fa fa-file-text-o pointer-none"
+                      aria-hidden="true"
+                    ></i>
+                    <p class="pointer-none">
+                      <b>Drag and drop</b> files here <br />
+                      or <a href="" id="triggerFile">browse</a> to begin the
+                      upload
+                    </p>
+                    <input
+                      type="file"
+                      name="files"
+                      id="uploadPapers"
+                      multiple="multiple"
+                    />
+                  </div>
+                  <footer>
+                    <div class="divider">
+                      <span class="mt-3">
+                        <AR>FILES</AR>
+                      </span>
+                    </div>
+                    <div class="list-files">
+                      <!--   template   -->
+                    </div>
+                    <button class="importar">UPLOAD FILES</button>
+                  </footer>
+                </div>
+              </div>
+            </form>
+            <div class="upload">
+              <div class="upload-files">
+                <header>
+                  <p>
+                    <span class="notify">INFORMATION</span>
+                  </p>
+                </header>
+                <div class="px-3 pt-1">
+                  <form action="/" enctype="multipart/form-data" method="POST">
+                    <div class="form-group">
+                      <div class="input-group my-3">
+                        <input
+                          type="text"
+                          name="fName"
+                          aria-label="First name"
+                          class="form-control"
+                          placeholder="First name"
+                          id="firstName"
+                        />
+                        <input
+                          type="text"
+                          name="lName"
+                          aria-label="Last name"
+                          class="form-control"
+                          placeholder="Last name"
+                          id="lastName"
+                        />
+                      </div>
+                      <div class="input-group mb-3">
+                        <input
+                          type="tel"
+                          name="tel"
+                          class="form-control"
+                          placeholder="Phone"
+                          id="phoneNum"
+                        />
+                      </div>
+                      <div class="input-group mb-3">
+                        <input
+                          type="text"
+                          name="org"
+                          class="form-control"
+                          placeholder="Organization"
+                          id="organization"
+                        />
+                      </div>
+                      <div class="input-group mb-3">
+                        <input
+                          type="text"
+                          name="email"
+                          class="form-control"
+                          aria-label="email"
+                          placeholder="test@email.com"
+                          id="email"
+                        />
+                      </div>
+                      <div class="input-group mb-3">
+                        <textarea
+                          class="form-control noresize"
+                          name="abstract"
+                          style="resize: none"
+                          aria-label="abstract"
+                          placeholder="Abstract"
+                          id="abstract"
+                        ></textarea>
+                      </div>
+                      <div class="input-group input-group-sm mb-3">
+                        <textarea
+                          class="form-control"
+                          name="orcid"
+                          aria-label="OCRID"
+                          placeholder="ORCID"
+                          id="orcid"
+                        ></textarea>
+											</div>
+											<div class="d-none">
+												<input id="fileDisplayArea" type="text" name="paper_txt">
+											</div>
+                    </div>
 
-<div class="jumbotron jumbotron-fluid parallax-landing shadow-lg bg-white rounded" style="height: 130%">
-	<div class="container demo" id="section01">
-		<h1 class="display-3 font-weight-bold text-center">BlockChain Paper Submission</h1>
-		<p class="lead text-center">Add user by privete key. We guarantee your submission has absolute right author order
-		</p>
-		<a href="#section02"><span></span>S T A R T</a>
-	</div>
-</div>
+                    <button
+                      type="submit"
+                      class="float-right btn btn-primary"
+                      onclick="myFunction()"
+                    >
+                      Submit !
+                    </button>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-<div class="container">
-	<div id="section02" class="px-3 pt-5" style="height:100%">
-		<div class="row justify-content-center">
-			<!-- 		<div class="col-1"></div> -->
-			<div class="d-flex align-content-center  flex-wrap">
+      <div id="section03" class="pt-5">
+        <div id="section03_1" class="container pt-5"></div>
+        <!-- Generator By Axios	 -->
+      </div>
+    </div>
 
-				<form action="/" enctype="multipart/form-data" method="POST">
-					<div class="upload">
-						<div class="upload-files">
-							<header>
-								<p>
-									<i class="fa fa-cloud-upload" aria-hidden="true"></i>
-									<span class="up">up</span>
-									<span class="load">load</span>
-								</p>
-							</header>
-							<div class="body mt-5" id="drop">
-								<i class="fa fa-file-text-o pointer-none" aria-hidden="true"></i>
-								<p class="pointer-none"><b>Drag and drop</b> files here <br /> or <a href="" id="triggerFile">browse</a>
-								to begin the upload</p>
-								<input type="file" name="files" id="uploadPapers" multiple="multiple" />
-							</div>
-							<footer>
-								<div class="divider">
-									<span class="mt-3">
-										<AR>FILES</AR>
-									</span>
-								</div>
-								<div class="list-files">
-									<!--   template   -->
-								</div>
-								<button class="importar">UPLOAD FILES</button>
-							</footer>
-						</div>
-					</div>
-				</form>
-				<div class="upload">
-					<div class="upload-files">
-						<header>
-							<p>
-								<span class="notify">INFORMATION</span>
-							</p>
-						</header>
-						<div class="px-3 pt-1">
-							<form action="/" enctype="multipart/form-data" method="POST">
-							<div class="form-group">
-								<div class="input-group my-3">
-									<input type="text" name="fName" aria-label="First name" class="form-control" placeholder="First name"
-									id="firstName">
-									<input type="text" name="lName" aria-label="Last name" class="form-control" placeholder="Last name"
-									id="lastName">
-								</div>
-								<div class="input-group mb-3">
-									<input type="tel" name="tel" class="form-control" placeholder="Phone" id="phoneNum">
-								</div>
-								<div class="input-group mb-3">
-									<input type="text" name="org" class="form-control" placeholder="Organization" id="organization">
-								</div>
-								<div class="input-group mb-3">
-									<input type="text" name="email" class="form-control" aria-label="email" placeholder="test@email.com" id="email">
-								</div>
-								<div class="input-group mb-3">
-									<textarea class="form-control noresize" name="abstract" style="resize: none" aria-label="abstract"
-									placeholder="Abstract" id="abstract"></textarea>
-								</div>
-								<div class="input-group input-group-sm mb-3">
-									<textarea class="form-control" name="orcid" aria-label="OCRID" placeholder="ORCID"
-									id="ORCID"></textarea>
-								</div>
-							</div>
+    <footer class="footer bg-dark pl-3 mt-5" style="color: white">
+      Copyright @ Wei Jen liu
+    </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js"></script>
 
-							<button type="submit" class="float-right btn btn-primary" onclick="myFunction()">Submit !</button>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <script src="js/index.js"></script>
 
-	<div id="section03" class="pt-5">
-		<div id="section03_1" class="container pt-5"></div>
-		<!-- Generator By Axios	 -->
-	</div>
+    <script type="text/javascript">
+      // DATA
+      let data = {
+        txt: "",
+        firstName: "",
+        lastName: "",
+        phoneNum: "",
+        organization: "",
+        email: "",
+        orcid: "",
+        enTXT: ""
+      };
 
-</div>
+      //DOM
+      const $ = document.querySelector.bind(document);
+      var navShowBool = false;
+      //APP
+      let App = {};
+      App.init = (function() {
+        //Init
+        function handleFileSelect(evt) {
+          const files = evt.target.files; // FileList object
 
-<footer class="footer bg-dark pl-3 mt-5" style="color: white">Copyright @ Wei Jen liu</footer>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jsencrypt/2.3.1/jsencrypt.min.js'></script>
-<script src='https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js'></script>
-
-<script src="js/index.js"></script>
-
-<script type="text/javascript">
-		// DATA
-		let data = {
-			txt: "",
-			firstName: "",
-			lastName: "",
-			phoneNum: "",
-			organization: "",
-			email: "",
-			orcid: "",
-			enTXT: "" };
-
-
-		//DOM
-		const $ = document.querySelector.bind(document);
-		var navShowBool = false;
-		//APP
-		let App = {};
-		App.init = function () {
-		  //Init
-		  function handleFileSelect(evt) {
-		    const files = evt.target.files; // FileList object
-
-		    //files template
-		    let template = `${Object.keys(files).
-		    	map(
-		    		file => `<div class="file file--${file}">
+          //files template
+          let template = `${Object.keys(files)
+            .map(
+              file => `<div class="file file--${file}">
 		    		<div class="name"><span>${files[file].name}</span></div>
 		    		<div class="progress active"></div>
 		    		<div class="done">
@@ -696,199 +803,220 @@ body {
 		    		</svg>
 		    		</a>
 		    		</div>
-		    		</div>`).
+		    		</div>`
+            )
+            .join("")}`;
 
-		    	join("")}`;
+          $("#drop").classList.add("hidden");
+          $("footer").classList.add("hasFiles");
+          $(".importar").classList.add("active");
+          setTimeout(() => {
+            $(".list-files").innerHTML = template;
+          }, 1000);
 
-		    	$("#drop").classList.add("hidden");
-		    	$("footer").classList.add("hasFiles");
-		    	$(".importar").classList.add("active");
-		    	setTimeout(() => {
-		    		$(".list-files").innerHTML = template;
-		    	}, 1000);
+          Object.keys(files).forEach(file => {
+            let load = 2000 + file * 2000; // fake load
+            setTimeout(() => {
+              $(`.file--${file}`)
+                .querySelector(".progress")
+                .classList.remove("active");
+              $(`.file--${file}`)
+                .querySelector(".done")
+                .classList.add("anim");
+            }, load);
+          });
+        }
 
-		    	Object.keys(files).forEach(file => {
-		      let load = 2000 + file * 2000; // fake load
-		      setTimeout(() => {
-		      	$(`.file--${file}`).
-		      	querySelector(".progress").
-		      	classList.remove("active");
-		      	$(`.file--${file}`).
-		      	querySelector(".done").
-		      	classList.add("anim");
-		      }, load);
-		  });
-		    }
+        // trigger input
+        $("#triggerFile").addEventListener("click", evt => {
+          evt.preventDefault();
+          $("input[type=file]").click();
+        });
 
-		  // trigger input
-		  $("#triggerFile").addEventListener("click", evt => {
-		  	evt.preventDefault();
-		  	$("input[type=file]").click();
-		  });
+        // drop events
+        $("#drop").ondragleave = evt => {
+          $("#drop").classList.remove("active");
+          evt.preventDefault();
+        };
+        $("#drop").ondragover = $("#drop").ondragenter = evt => {
+          $("#drop").classList.add("active");
+          evt.preventDefault();
+        };
+        $("#drop").ondrop = evt => {
+          $("input[type=file]").files = evt.dataTransfer.files;
+          $("footer").classList.add("hasFiles");
+          $("#drop").classList.remove("active");
+          evt.preventDefault();
+        };
 
-		  // drop events
-		  $("#drop").ondragleave = evt => {
-		  	$("#drop").classList.remove("active");
-		  	evt.preventDefault();
-		  };
-		  $("#drop").ondragover = $("#drop").ondragenter = evt => {
-		  	$("#drop").classList.add("active");
-		  	evt.preventDefault();
-		  };
-		  $("#drop").ondrop = evt => {
-		  	$("input[type=file]").files = evt.dataTransfer.files;
-		  	$("footer").classList.add("hasFiles");
-		  	$("#drop").classList.remove("active");
-		  	evt.preventDefault();
-		  };
+        //upload more
+        $(".importar").addEventListener("click", () => {
+          $(".list-files").innerHTML = "";
+          $("footer").classList.remove("hasFiles");
+          $(".importar").classList.remove("active");
+          setTimeout(() => {
+            $("#drop").classList.remove("hidden");
+          }, 500);
+        });
 
-		  //upload more
-		  $(".importar").addEventListener("click", () => {
-		  	$(".list-files").innerHTML = "";
-		  	$("footer").classList.remove("hasFiles");
-		  	$(".importar").classList.remove("active");
-		  	setTimeout(() => {
-		  		$("#drop").classList.remove("hidden");
-		  	}, 500);
-		  });
+        // input change
+        $("input[type=file]").addEventListener("change", handleFileSelect);
+      })();
 
-		  // input change
-		  $("input[type=file]").addEventListener("change", handleFileSelect);
-		}();
+      $(".navbar-toggler").addEventListener("click", () => {
+        navShowBool = !navShowBool;
+        if (navShowBool == false) {
+          $("#navbarNav").classList.add("collapse");
+        } else {
+          $("#navbarNav").classList.remove("collapse");
+        }
+      });
 
-		$(".navbar-toggler").addEventListener("click", () => {
-			navShowBool = !navShowBool;
-			if (navShowBool == false) {
-				$("#navbarNav").classList.add("collapse");
-			} else {
-				$("#navbarNav").classList.remove("collapse");
-			}
-		});
+      var nav = $("#main_nav");
+      var position = 0;
 
-		var nav = $("#main_nav");
-		var position = 0;
+      window.addEventListener("scroll", function() {
+        if (position < window.pageYOffset) {
+          // console.log('down')
+          nav.classList.add("up");
+          nav.classList.remove("nav_show");
+          position = window.pageYOffset;
+        } else {
+          // console.log('up');
+          nav.classList.remove("up");
+          nav.classList.add("nav_show");
+          position = window.pageYOffset;
+        }
+      });
 
-		window.addEventListener("scroll", function () {
-			if (position < window.pageYOffset) {
-		    // console.log('down')
-		    nav.classList.add("up");
-		    nav.classList.remove("nav_show");
-		    position = window.pageYOffset;
-		} else {
-		    // console.log('up');
-		    nav.classList.remove("up");
-		    nav.classList.add("nav_show");
-		    position = window.pageYOffset;
-		}
-	});
+      window.onload = function() {
+        var fileInput = document.getElementById("uploadPapers");
 
-		window.onload = function () {
-			var fileInput = document.getElementById("uploadPapers");
+        fileInput.addEventListener("change", function(e) {
+          var file = fileInput.files[0];
+          var textType = /text.*/;
 
-			fileInput.addEventListener("change", function (e) {
-				var file = fileInput.files[0];
-				var textType = /text.*/;
+          if (file.type.match(textType)) {
+            var reader = new FileReader();
 
-				if (file.type.match(textType)) {
-					var reader = new FileReader();
+            reader.onload = function(e) {
+              // console.log(reader.result);
+              data.txt = reader.result;
+            };
 
-					reader.onload = function (e) {
-		        // console.log(reader.result);
-		        data.txt = reader.result;
-		    };
+            reader.readAsText(file);
+          } // else {
+          // 	alert("File not supported!")
+          // }
+        });
+      };
 
-		    reader.readAsText(file);
-		    } // else {
-		    // 	alert("File not supported!")
-		    // }
-		});
-		};
+      function myFunction() {
+        data.firstName = document.querySelector("#firstName").value;
+        data.lastName = document.querySelector("#lastName").value;
+        data.phoneNum = document.querySelector("#phoneNum").value;
+        data.organization = document.querySelector("#organization").value;
+        data.email = document.querySelector("#email").value;
+        data.orcid = document.querySelector("#orcid").value;
 
-		function myFunction() {
-			data.firstName = document.querySelector("#firstName").value;
-			data.lastName = document.querySelector("#lastName").value;
-			data.phoneNum = document.querySelector("#phoneNum").value;
-			data.organization = document.querySelector("#organization").value;
-			data.email = document.querySelector("#email").value;
-			data.orcid = document.querySelector("#orcid").value;
+        // Encrypt with the public key...
+        // var encrypt = new JSEncrypt();
+        // encrypt.setPublicKey(data.publickey);
+        // var encrypted = encrypt.encrypt(data.txt);
+        // data.enTXT = encrypted;
 
-		  // Encrypt with the public key...
-		  // var encrypt = new JSEncrypt();
-		  // encrypt.setPublicKey(data.publickey);
-		  // var encrypted = encrypt.encrypt(data.txt);
-		  // data.enTXT = encrypted;
+        console.log(JSON.stringify(data));
+        // 	// Decrypt with the private key...
+        // 	var decrypt = new JSEncrypt();
+        // 	decrypt.setPrivateKey($("#privkey").val());
+        // 	var uncrypted = decrypt.decrypt(encrypted);
 
-		  console.log(JSON.stringify(data));
-		  // 	// Decrypt with the private key...
-		  // 	var decrypt = new JSEncrypt();
-		  // 	decrypt.setPrivateKey($("#privkey").val());
-		  // 	var uncrypted = decrypt.decrypt(encrypted);
+        // 	// Now a simple check to see if the round-trip worked.
+        // 	if (uncrypted == $("#input").val()) {
+        // 		alert("It works!!!");
+        // 	} else {
+        // 		alert("Something went wrong....");
+        // 	}
+      }
 
-		  // 	// Now a simple check to see if the round-trip worked.
-		  // 	if (uncrypted == $("#input").val()) {
-		  // 		alert("It works!!!");
-		  // 	} else {
-		  // 		alert("Something went wrong....");
-		  // 	}
-		}
+      window.onload = function() {
+        const board = $("#section03_1");
+        axios
+          .get("https://my-json-server.typicode.com/typicode/demo/comments")
+          .then(function(response) {
+            for (var i = 0; i < response.data.length; i++) {
+              board.appendChild(createCard(response.data[i]));
+            }
+          })
+          .catch(function(error) {
+            console.log(error);
+          });
+      };
 
-		window.onload = function () {
-			const board = $("#section03_1");
-			axios.
-			get("https://my-json-server.typicode.com/typicode/demo/comments").
-			then(function (response) {
-				for (var i = 0; i < response.data.length; i++) {
-					board.appendChild(createCard(response.data[i]));
-				}
-			}).
-			catch(function (error) {
-				console.log(error);
-			});
-		};
-
-		function createCard(obj) {
-			let html = `<div class="card mb-1 shadow-sm rounded">
+      function createCard(obj) {
+        let html = `<div class="card mb-1 shadow-sm rounded">
 			<div class="card-body">
 			<h5 class="card-title" id="paperTitle">${obj.id}</h5>
 			<h6 class="card-subtitle mb-2 text-muted" id="paperAuthor">${obj.body}</h6>
 			<p class="card-text" id="paperAbstract">${obj.postId}</p>
-			<a href="javascript:void(0)" class="card-link float-right" onclick="addAuthor(${obj.id})">Add Author</a>
+			<a href="javascript:void(0)" class="card-link float-right" onclick="addAuthor(${
+        obj.id
+      })">Add Author</a>
 			<a href="javascript:void(0)" class="card-link float-right pr-3">PDF link</a>
 			<div id="priInput_${obj.id}"></div>
 			</div>
 			</div>`;
-		  //console.log(html)
+        //console.log(html)
 
-		  return createElementFromHTML(html);
+        return createElementFromHTML(html);
+      }
 
-		}
+      function createElementFromHTML(htmlString) {
+        var div = document.createElement("div");
+        div.innerHTML = htmlString.trim();
+        return div.firstChild;
+      }
 
-		function createElementFromHTML(htmlString) {
-			var div = document.createElement('div');
-			div.innerHTML = htmlString.trim();
-			return div.firstChild;
-		}
-
-		function addAuthor(id) {
-			let priInput = $("div#priInput_" + id);
-			console.log(priInput);
-			for (let i = 0; i < id; i++) {
-				let html = `<div id="inGroup_${id}" class="input-group pt-3">
+      function addAuthor(id) {
+        let priInput = $("div#priInput_" + id);
+        console.log(priInput);
+        for (let i = 0; i < id; i++) {
+          let html = `<div id="inGroup_${id}" class="input-group pt-3">
 				<input id="inKey_${id}" type="text" class="form-control" placeholder="Private key">
 				<div class="input-group-append">
 				<button class="btn btn-outline-secondary" id="b_${id}" onclick="sendPrivateKey(${id})">Send</button>
 				</div>
 				</div>`;
-				priInput.appendChild(createElementFromHTML(html));
-			}
+          priInput.appendChild(createElementFromHTML(html));
+        }
+      }
 
-		}
+      function sendPrivateKey(id) {
+        console.log($("#inKey_" + id).value);
+      }
 
-		function sendPrivateKey(id) {
-			console.log($('#inKey_' + id).value);
-		}
-	</script>
+      window.onload = function() {
+        var fileInput = document.getElementById("uploadPapers");
+        var fileDisplayArea = document.getElementById("fileDisplayArea");
 
-</body>
+        fileInput.addEventListener("change", function(e) {
+          var file = fileInput.files[0];
+          var textType = /text.*/;
 
+          if (file.type.match(textType)) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+							fileDisplayArea.value = reader.result;
+							console.log(reader.result)
+            };
+
+            reader.readAsText(file);
+          } else {
+            fileDisplayArea.innerText = "File not supported!";
+          }
+        });
+      };
+    </script>
+  </body>
 </html>

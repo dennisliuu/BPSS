@@ -40,14 +40,11 @@ app.use(koaBody({
       app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
       app.context.uploadpath[name] = `${dirName}/${fileName}`;
       // hashFile(dirName, fileName)
-      postMongoDB(file.name)
+      // postMongoDB(file.name)
     },
   }
 }));
 app.use(router.routes()).use(router.allowedMethods());
-// app.use(ctx => {
-//   ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
-// });
 
 
 app.listen(3000, () => {
