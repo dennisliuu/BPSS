@@ -36,4 +36,23 @@ router.post("/", async ctx => {
   // kitty2.save().then(() => console.log('meow2'))
 });
 
+router.get("/blocks", async ctx => {
+  // mongoose.connect("mongodb://140.124.72.124:8080/MongoDB_Plus_Blockchain", {
+  //   useNewUrlParser: true
+  // });
+  // const Blockchain = mongoose.model("Block", {
+  //   _id: String,
+  //   "Block Number": String,
+  //   Hash: String
+  // })
+  Block.find({}, function(err, blocks) {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(blocks);
+      ctx.body = JSON.stringify(blocks);
+    }
+  });
+})
+
 module.exports = router;
