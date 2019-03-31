@@ -27,7 +27,7 @@ app.use(koaBody({
   formidable: {
     uploadDir: path.join(__dirname, 'public/upload'),
     keepExtensions: true,
-    maxFieldsSize: 2 * 1024 * 1024,
+    // maxFieldsSize: 2 * 1024 * 1024,
     onFileBegin: (name, file) => {
       console.log(file);
       const ext = getUploadFileExt(file.name);
@@ -47,6 +47,8 @@ app.use(koaBody({
 app.use(router.routes()).use(router.allowedMethods());
 
 
-app.listen(3000, () => {
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
   console.log('[ok] Server starts at http://127.0.0.1:3000');
 });
+
