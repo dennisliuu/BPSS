@@ -43,9 +43,19 @@ router.post("/", async ctx => {
   // kitty2.save().then(() => console.log('meow2'))
 });
 
-router.get("/blocks", async ctx => {
-
+router.get("/blockchains", async ctx => {
   await Blockchain.find({}, (err, blocks) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log(blocks);
+      ctx.body = blocks
+    }
+  });
+})
+
+router.get("/blocks", async ctx => {
+  await Block.find({}, (err, blocks) => {
     if (err) {
       console.log(err);
     } else {
