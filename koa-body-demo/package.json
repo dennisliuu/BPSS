@@ -10,5 +10,8 @@
     "koa-nunjucks-2": "^3.0.2",
     "koa-router": "^7.4.0",
     "mongoose": "^5.4.19"
+  },
+  "scripts": {
+    "start": "node app.js"
   }
 }
