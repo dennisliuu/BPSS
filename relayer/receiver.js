@@ -15,7 +15,7 @@ const rec = () => {
 };
 
 const buf2pdf = paperTXT => {
-  let buf = await new Buffer.from(paperTXT.toString(), 'base64')
+  let buf = new Buffer.from(paperTXT.toString(), 'base64')
   fs.writeFile("store/paper.pdf", buf, err => {
     if (err) throw err;
     console.log("Save !");
@@ -25,7 +25,7 @@ const buf2pdf = paperTXT => {
 function readTXT1 () {
   return new Promise(resolve => {
     setTimeout(() => {
-      let data = fs.readFileSync("buf/send1.txt", "utf8")
+      let data = fs.readFileSync("buf/send.txt", "utf8")
       resolve(data);
     }, 2000);
   });
