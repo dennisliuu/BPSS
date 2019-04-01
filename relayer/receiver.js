@@ -22,10 +22,10 @@ const buf2pdf = paperTXT => {
   });
 };
 
-function readTXT () {
+function readTXT1 () {
   return new Promise(resolve => {
     setTimeout(() => {
-      let data = fs.readFileSync("buf/send1.txt")
+      let data = fs.readFileSync("buf/send1.txt", "utf8")
       resolve(data);
     }, 2000);
   });
@@ -40,14 +40,14 @@ const main = async () => {
       console.log(fs.readFileSync("buf/send.txt", "utf8").split("\n\n")[0]);
       break;
     case "d":
-      let paperTXT = await readTXT();
+      let paperTXT = await readTXT1();
       // let paperHead = paperTXT.split("\n\n")[0];
       let paperBody = paperTXT
         .split("\n\n")
         .slice(-1)
         .pop();
-
-      let key = path.join("pem", "public.pem");
+      paperBody = paperBody.toString('base64')
+      let key = path.join("pem", "publicA.pem");
       paperTXT = await decryptFile(paperBody, key);
       await buf2pdf(paperTXT);
       break;
