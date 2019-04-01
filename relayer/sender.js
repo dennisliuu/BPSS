@@ -37,16 +37,16 @@ const sender = eA => {
 const main = async () => {
   switch (process.argv[2]) {
     case "s":
-			// await pdf2bs64();
+			await pdf2bs64();
       let paperTXT = await readTXT()
-      let paperHead = paperTXT.split('\n\n')[0]
-      let paperBody = paperTXT.split('\n\n').slice(-1).pop()
+      // let paperHead = paperTXT.split('\n\n')[0]
+      // let paperBody = paperTXT.split('\n\n').slice(-1).pop()
       
-			let eA = await encryptFile(paperBody, "../BCPtest/pem/privateA.pem")
-			eA = paperHead + '\n' + process.argv[3] + '\n\n' + eA
+			let eA = await encryptFile(paperTXT, "../BCPtest/pem/publicAB.pem")
+			eA = process.argv[3] + '\n\n' + eA
 			// console.log(eA);
 			fs.writeFileSync("buf/send.txt", eA)
-      // sender(eA);
+      sender(eA);
       break;
     default:
       break;
