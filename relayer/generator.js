@@ -1,5 +1,5 @@
 const fs = require('fs')
 
-const generator = require("../BCPtest/utils/generator")
+const generator = require("utils/generator")
 
 generator('A', 'A')
