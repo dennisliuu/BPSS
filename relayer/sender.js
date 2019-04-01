@@ -8,29 +8,30 @@ const encryptFile = require("../BCPtest/utils/encryptFile");
 
 const pdf2bs64 = () => {
   let buffer = fs.readFileSync("./store/send.pdf");
-  let bs64 = buffer.toString("base64");
-  fs.writeFile("buf/send.txt", bs64, err => {
+  let bs64 = buffer.toString('base64');
+  fs.writeFile("buf/send1.txt", bs64, err => {
     if (err) throw err;
     console.log("pdf complete!");
   });
 };
 
-const readTXT = () => {
+function readTXT () {
   return new Promise(resolve => {
-    fs.readFile("buf/send.txt", "utf8", (err, data) => {
-      if (err) console.log(err);
+    setTimeout(() => {
+      let data = fs.readFileSync("buf/send1.txt")
       resolve(data);
-    });
+    }, 2000);
   });
 };
 
+
 const sender = eA => {
-  fs.writeFile("buf/send.txt", eA, err => {
+  fs.writeFile("buf/send2.txt", eA, err => {
     if (err) throw err;
     console.log("Send !");
   });
   nc.port(2389)
-    .serve("buf/send.txt")
+    .serve("buf/send2.txt")
     .listen();
 };
 
@@ -39,9 +40,10 @@ const main = async () => {
     case "s":
 			await pdf2bs64();
       let paperTXT = await readTXT()
-      // let paperHead = paperTXT.split('\n\n')[0]
-      // let paperBody = paperTXT.split('\n\n').slice(-1).pop()
-      
+      fs.writeFileSync('t1.txt', paperTXT)
+      let buf = await new Buffer.from(paperTXT.toString(), 'base64')
+      fs.writeFileSync('pdf.pdf', buf)
+
 			let eA = await encryptFile(paperTXT, "./pem/privateA.pem")
 			eA = process.argv[3] + '\n\n' + eA
 			// console.log(eA);

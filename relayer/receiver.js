@@ -15,20 +15,19 @@ const rec = () => {
 };
 
 const buf2pdf = paperTXT => {
-  let buf = paperTXT;
-  let buff = new Buffer.from(buf, "base64");
-  fs.writeFileSync("store/2.pdf", buff, err => {
+  let buf = await new Buffer.from(paperTXT.toString(), 'base64')
+  fs.writeFile("store/paper.pdf", buf, err => {
     if (err) throw err;
     console.log("Save !");
   });
 };
 
-const readTXT = () => {
+function readTXT () {
   return new Promise(resolve => {
-    fs.readFile("buf/send.txt", "utf8", (err, data) => {
-      if (err) console.log(err);
+    setTimeout(() => {
+      let data = fs.readFileSync("buf/send1.txt")
       resolve(data);
-    });
+    }, 2000);
   });
 };
 
@@ -50,7 +49,6 @@ const main = async () => {
 
       let key = path.join("pem", "public.pem");
       paperTXT = await decryptFile(paperBody, key);
-      console.log(paperTXT);
       await buf2pdf(paperTXT);
       break;
     default:
