@@ -42,7 +42,7 @@ const main = async () => {
       // let paperHead = paperTXT.split('\n\n')[0]
       // let paperBody = paperTXT.split('\n\n').slice(-1).pop()
       
-			let eA = await encryptFile(paperTXT, "../BCPtest/pem/publicAB.pem")
+			let eA = await encryptFile(paperTXT, "./pem/privateA.pem")
 			eA = process.argv[3] + '\n\n' + eA
 			// console.log(eA);
 			fs.writeFileSync("buf/send.txt", eA)
