@@ -8,8 +8,8 @@ const NodeRSA = require("node-rsa");
 const decryptFile = require("../BCPtest/utils/decryptFile");
 // const updateFile = require('./updateFile')
 
-const rec = () => {
-  nc.addr("140.124.72.190")
+const rec = (ip) => {
+  nc.addr(ip)
     .port(2389)
     .connect()
     .pipe(fs.createWriteStream("buf/send.txt"));
@@ -37,7 +37,7 @@ function readTXT () {
 const main = async () => {
   switch (process.argv[2]) {
     case "r":
-      await rec();
+      await rec(process.argv[3]);
       break;
     case "n":
       console.log(fs.readFileSync("buf/send.txt", "utf8").split("\n\n")[0]);
