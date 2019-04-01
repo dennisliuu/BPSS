@@ -6,6 +6,7 @@ const nc = new NetcatClient();
 
 const NodeRSA = require("node-rsa");
 const decryptFile = require("../BCPtest/utils/decryptFile");
+// const updateFile = require('./updateFile')
 
 const rec = () => {
   nc.addr("140.124.72.190")
@@ -22,12 +23,14 @@ const buf2pdf = paperTXT => {
   });
 };
 
-function readTXT1 () {
+function readTXT () {
   return new Promise(resolve => {
-    setTimeout(() => {
       let data = fs.readFileSync("buf/send.txt", "utf8")
       resolve(data);
-    }, 2000);
+    // setTimeout(() => {
+    //   let data = fs.readFileSync("buf/send.txt", "utf8")
+    //   resolve(data);
+    // }, 2000);
   });
 };
 
@@ -40,7 +43,9 @@ const main = async () => {
       console.log(fs.readFileSync("buf/send.txt", "utf8").split("\n\n")[0]);
       break;
     case "d":
-      let paperTXT = await readTXT1();
+      let paperTXT = await readTXT();
+      // let paperTXT = await updateFile.readFile('buf/send.txt')
+      // console.log(paperTXT)
       // let paperHead = paperTXT.split("\n\n")[0];
       let paperBody = paperTXT
         .split("\n\n")
