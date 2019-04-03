@@ -1,0 +1,38 @@
+{
+  "name": "relayer",
+  "description": "Sender - Receiver",
+  "version": "0.0.0",
+  "author": "dennisliuu @dennisliuu",
+  "bin": {
+    "relayer": "./bin/run"
+  },
+  "bugs": "https://github.com/dennisliuu/relayer/issues",
+  "dependencies": {
+    "@oclif/command": "^1.5.12",
+    "@oclif/config": "^1.12.12",
+    "@oclif/plugin-help": "^2.1.6",
+    "netcat": "^1.4.0",
+    "node-rsa": "^1.0.5"
+  },
+  "devDependencies": {},
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "files": [
+    "/bin",
+    "/src"
+  ],
+  "homepage": "https://github.com/dennisliuu/relayer",
+  "keywords": [
+    "oclif"
+  ],
+  "license": "MIT",
+  "main": "src/index.js",
+  "oclif": {
+    "bin": "relayer"
+  },
+  "repository": "dennisliuu/relayer",
+  "scripts": {
+    "test": "echo NO TESTS"
+  }
+}
