@@ -1,1 +1,1 @@
-# project-type
+# BPSS - Blockchain-based Paper Submission System
