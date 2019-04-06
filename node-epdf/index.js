@@ -12,7 +12,7 @@ const encrypt = async () => {
     // console.log(paperTXT)
     let eA = await en(paperTXT, 'privateA.pem')
     // console.log(eA);
-    fs.writeFileSync('pdf_text', eA)
+    fs.writeFileSync('pdf_text', eA, 'utf8')
 }
 // encrypt()
 
@@ -21,7 +21,7 @@ const decrypt = async () => {
     // console.log(paperTXT);
     let eA = await de(paperTXT, 'publicA.pem')
     // console.log(eA)
-    fs.writeFileSync('paper2.pdf', eA) 
+    fs.writeFileSync('paper2.pdf', eA, 'utf8') 
 }
 // decrypt()
 
