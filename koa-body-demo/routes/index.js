@@ -20,11 +20,11 @@ router.post("/", async ctx => {
 });
 
 router.get("/blockchains", async ctx => {
-  ctx.body = await getData.getBlockchain()
+  ctx.body = JSON.stringify(await getData.getBlockchain())
 })
 
 router.get("/blocks", async ctx => {
-  ctx.body = await getData.getBlock()
+  ctx.body = JSON.stringify(await getData.getBlock())
 })
 
 module.exports = router;
