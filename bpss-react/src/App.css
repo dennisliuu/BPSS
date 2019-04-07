@@ -141,3 +141,13 @@
   width: 550px;
   margin-left: -5%;
 }
+
+.try-logo {
+  width: 300px;
+  float: right;
+  /* margin-right: 15%; */
+}
+
+.intro-logo {
+  width: 50px;
+}

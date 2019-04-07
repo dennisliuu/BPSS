@@ -28,13 +28,18 @@
 
 /* Grid
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
-.container {
+.container,
+.container-sm {
   position: relative;
   width: 100%;
   max-width: 90%;
   margin: 0 auto;
   padding: 0 20px;
   box-sizing: border-box; }
+.container-sm {
+  max-width: 75%;
+  overflow:auto;
+}
 .column,
 .columns {
   width: 100%;
