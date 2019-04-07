@@ -26,7 +26,8 @@ request({
     uri: 'http://anonymouse.org/cgi-bin/anon-email.cgi',
     body: formData,
     method: 'POST'
-}, function (err, res, body) {
-    //it works!
+}, (err, res, body) => {
     if (err) throw err
+    else if (body.includes("The e-mail has been sent"))
+        console.log('[+] Email Sent!\n[+] In order to increase your privacy, the anonymous e-mail will be randomly delayed up to 12 hours')
 });
