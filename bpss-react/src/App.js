@@ -20,10 +20,10 @@ class App extends Component {
                 <p className="navbar-link nav-brand" href="#">BPASS</p>
               </li>
               <li className="navbar-item">
-                <a className="navbar-link" href="#">Intro</a>
+                <a className="navbar-link" href="#">Try now!</a>
               </li>
               <li className="navbar-item">
-                <a className="navbar-link" href="#">Services</a>
+                <a className="navbar-link" href="#">Intro</a>
               </li>
               <li className="navbar-item">
                 <a className="navbar-link" href="#">Team</a>
