@@ -9,7 +9,7 @@ class More extends Component {
       return (
         <div className="mt-10">
           <h5>More</h5>
-          <p>Nothing to read. Just give it a free try.</p>
+          <p>For more info, please connect me freely on <a href="mailto:dennisliuu@gmail.com">dennisliuu@gmail.com</a></p>
         </div>
       )
     }
