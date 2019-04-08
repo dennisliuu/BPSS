@@ -23,6 +23,9 @@ class Trynow extends Component {
     event.preventDefault();
     fetch('https://fathomless-lake-78876.herokuapp.com/', {
       method: 'POST',
+      headers: {
+        'Content-Type': 'application/JSON'
+      },
       body: JSON.stringify({
         email: this.state.value
       })
