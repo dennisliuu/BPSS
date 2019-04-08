@@ -39,7 +39,7 @@ class App extends Component {
                 <li className="navbar-item">
                   <a className="navbar-link" href="#more">More</a>
                 </li>
-                <li className="navbar-item  float-r">
+                <li className="navbar-item u-pull-right">
                   <a className="navbar-link nav-github" href="#"><i className="fab fa-github"></i></a>
                 </li>
               </ul>
