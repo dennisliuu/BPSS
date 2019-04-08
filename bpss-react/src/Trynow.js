@@ -21,12 +21,8 @@ class Trynow extends Component {
   handleSubmit(event) {
     alert('A name was submitted: ' + this.state.value);
     event.preventDefault();
-    fetch('https://fathomless-lake-78876.herokuapp.com/blocks', {
+    fetch('https://fathomless-lake-78876.herokuapp.com/', {
       method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
       body: JSON.stringify({
         email: this.state.value
       })
