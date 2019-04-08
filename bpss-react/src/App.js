@@ -6,8 +6,9 @@ import './skeleton.css'
 // SVG
 import undraw_connected_world from './undraw_connected_world.svg'
 // JS
-import Intro from './Intro'
 import Trynow from './Trynow'
+import Intro from './Intro'
+import Blocktable from './Blocktable'
 import Team from './Team'
 import More from './More'
 
@@ -28,6 +29,9 @@ class App extends Component {
                 </li>
                 <li className="navbar-item">
                   <a className="navbar-link" href="#intro">Intro</a>
+                </li>
+                <li className="navbar-item">
+                  <a className="navbar-link" href="#blocktable">Blocktable</a>
                 </li>
                 <li className="navbar-item">
                   <a className="navbar-link" href="#team">Team</a>
@@ -89,6 +93,9 @@ class App extends Component {
         </div>
         <div className="container-sm" id="intro">
           <Intro />
+        </div>
+        <div className="container-sm" id="blocktable">
+          <Blocktable />
         </div>
         <div className="container-sm overflow-h" id="team">
           <Team />

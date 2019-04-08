@@ -17,14 +17,14 @@ class Intro extends Component {
       papers: 0
     }
   }
-  componentDidMount() {
-    fetch('https://fathomless-lake-78876.herokuapp.com/blockchains')
+  async componentDidMount() {
+    await fetch('https://fathomless-lake-78876.herokuapp.com/blockchains')
       .then(response => response.json())
       .then(data => {
         let blockHeight = data.length
         this.setState({ height: blockHeight })
       });
-    fetch('https://fathomless-lake-78876.herokuapp.com/blocks')
+    await fetch('https://fathomless-lake-78876.herokuapp.com/blocks')
       .then(response => response.json())
       .then(data => {
         let paperHeight = data.length
@@ -66,7 +66,7 @@ class Intro extends Component {
           </div>
         </div>
         <div class="row">
-          <div class="two columns"><strong>{this.state.height}</strong> Papers</div>
+          <div class="two columns"><strong>{this.state.height}</strong><br /> Papers</div>
           <div class="ten columns">
             <div class="row">
               <div class="one-half column">
