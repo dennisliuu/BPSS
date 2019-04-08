@@ -66,7 +66,7 @@ class Intro extends Component {
           </div>
         </div>
         <div className="row">
-          <div className="two columns"><strong>{this.state.height}</strong><br /> Papers</div>
+          <div className="two columns"><strong>{this.state.papers}</strong><br /> Papers</div>
           <div className="ten columns">
             <div className="row">
               <div className="one-half column">
