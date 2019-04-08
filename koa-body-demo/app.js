@@ -11,7 +11,10 @@ const getUploadDirName = require('./utils/getUploadDirName');
 const hashFile = require('./utils/hashFile')
 const postMongoDB = require('./utils/postMongoDB')
 
-const app = new koa();
+const cors = require('@koa/cors');
+
+const app = new Koa();
+app.use(cors());
 
 app.use(nunjucks({
   ext: 'html',

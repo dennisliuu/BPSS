@@ -5,6 +5,7 @@
   "author": "postbird <ptbird@yeah.net> (http://www.ptbird.cn/)",
   "license": "MIT",
   "dependencies": {
+    "@koa/cors": "^2.2.3",
     "koa": "^2.7.0",
     "koa-body": "^4.1.0",
     "koa-nunjucks-2": "^3.0.2",
