@@ -34,9 +34,9 @@ class Intro extends Component {
   render() {
     return (
       <div className="mt-10">
-        <div class="row">
-          <div class="two columns"><h5>Intro.</h5></div>
-          <div class="ten columns">
+        <div className="row">
+          <div className="two columns"><h5>Intro.</h5></div>
+          <div className="ten columns">
             <p>
               How to ensure that all co-authors have agreed the submission of a research work to a conference or journal is an important issue?
             <br />
@@ -46,17 +46,17 @@ class Intro extends Component {
             </p>
           </div>
         </div>
-        <div class="row mt-5">
-          <div class="two columns"><strong>{this.state.height}</strong><br /> Blocks</div>
-          <div class="ten columns">
-            <div class="row">
-              <div class="one-half column">
+        <div className="row mt-5">
+          <div className="two columns"><strong>{this.state.height}</strong><br /> Blocks</div>
+          <div className="ten columns">
+            <div className="row">
+              <div className="one-half column">
                 <img src={key} className="intro-logo" alt="RSA" />
                 <br />
                 <strong>RSA algroithm</strong>
                 <p>Use RSA encryption to ensure personal data</p>
               </div>
-              <div class="one-half column">
+              <div className="one-half column">
                 <img src={blockchain} className="intro-logo" alt="RSA" />
                 <br />
                 <strong>Blockchain</strong>
@@ -65,22 +65,22 @@ class Intro extends Component {
             </div>
           </div>
         </div>
-        <div class="row">
-          <div class="two columns"><strong>{this.state.height}</strong><br /> Papers</div>
-          <div class="ten columns">
-            <div class="row">
-              <div class="one-half column">
+        <div className="row">
+          <div className="two columns"><strong>{this.state.height}</strong><br /> Papers</div>
+          <div className="ten columns">
+            <div className="row">
+              <div className="one-half column">
                 <img src={tools} className="intro-logo" alt="RSA" />
                 <br />
                 <strong>Relayer-cli</strong>
                 <p>Custom cli tool to send or receive papers</p>
               </div>
-              <div class="one-half column">
+              <div className="one-half column">
                 <img src={json} className="intro-logo" alt="RSA" />
                 <br />
                 <strong>Open Repo</strong>
                 <p>All blockchain are opened! You can visit from
-                <a href="https://fathomless-lake-78876.herokuapp.com/blockchains" target="_blank"> Here</a>
+                <a href="https://fathomless-lake-78876.herokuapp.com/blockchains" target="_blank" rel="noopener noreferrer"> Here</a>
                 </p>
               </div>
             </div>

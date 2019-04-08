@@ -22,7 +22,7 @@ class Blocktable extends Component {
         return (
             <div className="mt-10">
             <h5>Blockchains Table</h5>
-                <table class="u-full-width">
+                <table className="u-full-width">
                     <thead>
                         <tr>
                             <th>_id</th>
@@ -33,7 +33,7 @@ class Blocktable extends Component {
                     </thead>
                     <tbody>
                         {this.state.blockchains.map(block =>
-                            <tr>
+                            <tr key={block._id}>
                                 <td>{block._id}</td>
                                 <td>{block.Timestamp}</td>
                                 {/* <td>{block.HashWithTimestamp}</td> */}

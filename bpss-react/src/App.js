@@ -16,7 +16,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <a className="button backtop" href="#"><i class="fas fa-arrow-up"></i></a>
+        <a className="button backtop" href="#"><i className="fas fa-arrow-up"></i></a>
         <div className="landing">
           <div className="container">
             <nav className="navbar pt-1">
