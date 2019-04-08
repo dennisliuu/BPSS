@@ -1,8 +1,15 @@
+html {
+  scroll-behavior: smooth;
+}
+strong {
+  line-height: 2;
+}
 .App {
   /* height: 100vh; */
 }
 .landing {
   height: 100vh;
+  border-bottom: 1px solid lightgray;
 }
 /*.App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -88,10 +95,6 @@
   float: right;
 }
 
-.pt-1 {
-  padding-top: 1rem;
-}
-
 .bg-dark {
   background: #222;
 }
@@ -109,7 +112,9 @@
   content: "";
   display: table;
   clear: both; } */
-
+.container-team {
+  text-align: center;
+}
 .spon-col {
   width: 16.4555555555vw;
   height: 100px;
@@ -117,6 +122,27 @@
   text-align: center;
   line-height: 8rem;
 }
+.team-col {
+  width: 49%;
+  height: 600px;
+  display: inline-block;
+  text-align: center;
+  /* line-height: 8rem; */
+  vertical-align: top;
+}
+.overflow-h {
+  overflow: hidden !important;
+}
+.border {
+  border: 1px solid lightgray;
+}
+.border {
+  border: 1px solid lightgray;
+}
+.text-left {
+  text-align: left;
+}
+
 
 .color-w {
   color: #fff;
@@ -133,8 +159,26 @@
   transform: rotate(180deg);
 }
 
+.m-3 {
+  margin: 3rem;
+}
+
 .mt-10 {
   margin-top: 10%;
+}
+
+.mt-5 {
+  margin-top: 5%;
+}
+.ml-49 {
+  margin-left: 49%;
+}
+.mt-_10 {
+  margin-top: -10%;
+}
+
+.pt-1 {
+  padding-top: 1rem;
 }
 
 .bitcoin-logo {
@@ -151,3 +195,16 @@
 .intro-logo {
   width: 50px;
 }
+
+.backtop {
+  position: fixed;
+  top: 90%;
+  right: 3%;
+  z-index: 99;
+}
+
+.btn-dark {
+  background: #222 !important;
+  color: #eee !important;
+}
+
