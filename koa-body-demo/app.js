@@ -26,26 +26,26 @@ app.use(nunjucks({
 
 app.use(koaBody({
   multipart: true,
-  encoding: 'gzip',
-  formidable: {
-    uploadDir: path.join(__dirname, 'public/upload'),
-    keepExtensions: true,
-    // maxFieldsSize: 2 * 1024 * 1024,
-    onFileBegin: (name, file) => {
-      console.log(file);
-      const ext = getUploadFileExt(file.name);
-      const dirName = getUploadDirName();
-      const dir = path.join(__dirname, `public/upload/${dirName}`);
-      checkDirExist(dir);
-      const fileName = getUploadFileName(ext);
-      // const fileName = file.name;
-      file.path = `${dir}/${fileName}`;
-      app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
-      app.context.uploadpath[name] = `${dirName}/${fileName}`;
-      // hashFile(dirName, fileName)
-      // postMongoDB(file.name)
-    },
-  }
+  // encoding: 'utf-8',
+  // formidable: {
+  //   uploadDir: path.join(__dirname, 'public/upload'),
+  //   keepExtensions: true,
+  //   // maxFieldsSize: 2 * 1024 * 1024,
+  //   onFileBegin: (name, file) => {
+  //     console.log(file);
+  //     const ext = getUploadFileExt(file.name);
+  //     const dirName = getUploadDirName();
+  //     const dir = path.join(__dirname, `public/upload/${dirName}`);
+  //     checkDirExist(dir);
+  //     const fileName = getUploadFileName(ext);
+  //     // const fileName = file.name;
+  //     file.path = `${dir}/${fileName}`;
+  //     app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
+  //     app.context.uploadpath[name] = `${dirName}/${fileName}`;
+  //     // hashFile(dirName, fileName)
+  //     // postMongoDB(file.name)
+  //   },
+  // }
 }));
 app.use(router.routes()).use(router.allowedMethods());
 

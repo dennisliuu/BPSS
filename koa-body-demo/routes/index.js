@@ -1,4 +1,5 @@
-const router = require("koa-router")();
+const Koa = require('koa')
+const router = require('koa-router')()
 // const getData = require('../utils/getData')
 
 const mongoose = require("mongoose");
@@ -50,9 +51,9 @@ router.get("/", async ctx => {
   await ctx.render("index");
 });
 
-router.post("/", async ctx => {
+router.post("/", ctx => {
   ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
-  // console.log(JSON.stringify(ctx.request.body));
+  console.log(JSON.stringify(ctx.request.body));
   const new_block = new Block(ctx.request.body);
   console.log(new_block);
   new_block.save().then(() => console.log("Add success!"));
