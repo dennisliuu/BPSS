@@ -25,7 +25,7 @@ class Intro extends Component {
             </p>
           </div>
         </div>
-        <div class="row">
+        <div class="row mt-5">
           <div class="two columns">26 Blocks</div>
           <div class="ten columns">
             <div class="row">

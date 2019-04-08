@@ -11,7 +11,7 @@ class Trynow extends Component {
         <div className="mt-10">
           <h5>Try now!</h5>
           <p>Nothing to read. Just give it a free try.</p>
-          <a class="button" href="https://fathomless-lake-78876.herokuapp.com/" target="_blank">Here to go <i class="fas fa-chevron-right"></i></a>
+          <a class="button btn-dark" href="https://fathomless-lake-78876.herokuapp.com/" target="_blank">Here to go &nbsp;<i class="fas fa-chevron-right"></i></a>
           <img src={undraw_creative_experiment} className="try-logo" alt="logo" />
         </div>
       )

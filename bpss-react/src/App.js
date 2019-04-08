@@ -8,11 +8,14 @@ import undraw_connected_world from './undraw_connected_world.svg'
 // JS
 import Intro from './Intro'
 import Trynow from './Trynow'
+import Team from './Team'
+import More from './More'
 
 class App extends Component {
   render() {
     return (
       <div className="App">
+        <a className="button backtop" href="#"><i class="fas fa-arrow-up"></i></a>
         <div className="landing">
           <div className="container">
             <nav className="navbar pt-1">
@@ -21,16 +24,16 @@ class App extends Component {
                   <p className="navbar-link nav-brand" href="#">BPASS</p>
                 </li>
                 <li className="navbar-item">
-                  <a className="navbar-link" href="#">Try now!</a>
+                  <a className="navbar-link" href="#trynow">Try now!</a>
                 </li>
                 <li className="navbar-item">
-                  <a className="navbar-link" href="#">Intro</a>
+                  <a className="navbar-link" href="#intro">Intro</a>
                 </li>
                 <li className="navbar-item">
-                  <a className="navbar-link" href="#">Team</a>
+                  <a className="navbar-link" href="#team">Team</a>
                 </li>
                 <li className="navbar-item">
-                  <a className="navbar-link" href="#">More</a>
+                  <a className="navbar-link" href="#more">More</a>
                 </li>
                 <li className="navbar-item  float-r">
                   <a className="navbar-link nav-github" href="#"><i className="fab fa-github"></i></a>
@@ -81,11 +84,17 @@ class App extends Component {
             <div className="bg-dark color-w spon-col">Sponsor</div>
           </div>
         </div>
-        <div className="container-sm">
+        <div className="container-sm" id="trynow">
           <Trynow />
         </div>
-        <div className="container-sm">
+        <div className="container-sm" id="intro">
           <Intro />
+        </div>
+        <div className="container-sm overflow-h" id="team">
+          <Team />
+        </div>
+        <div className="container" id="more">
+          <More />
         </div>
       </div >
     );
