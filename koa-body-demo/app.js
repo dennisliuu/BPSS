@@ -13,7 +13,7 @@ const postMongoDB = require('./utils/postMongoDB')
 
 const cors = require('@koa/cors');
 
-const app = new Koa();
+const app = new koa();
 app.use(cors());
 
 app.use(nunjucks({
