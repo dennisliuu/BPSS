@@ -78,7 +78,7 @@ class Trynow extends Component {
           <label>Abstraction</label>
           <input className="u-full-width" type="text" placeholder="About this post" value={this.state.abstraction} onChange={this.handleChange} />
           <label>ORCID</label>
-          <input className="u-full-width" type="text" placeholder="About this post" value={this.state.orcid} onChange={this.handleChange} />
+          <input className="u-full-width" type="text" placeholder="Your ORCID" value={this.state.orcid} onChange={this.handleChange} />
           <input className="button btn-dark u-pull-right" type="submit" value="Submit"></input>
         </form>
         <p>Nothing to read. Just give it a free try.</p>
