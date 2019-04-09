@@ -29,39 +29,42 @@ class Trynow extends Component {
   }
 
   handleNameChange(event) {
-    this.setState({ 
+    this.setState({
       fullName: event.target.value
     })
   }
   handleOrganizationChange(event) {
-    this.setState({ 
+    this.setState({
       organization: event.target.value
     })
   }
   handlePhoneChange(event) {
-    this.setState({ 
+    this.setState({
       phone: event.target.value
     })
   }
   handleEmailChange(event) {
-    this.setState({ 
+    this.setState({
       email: event.target.value
     })
   }
   handleAbstractionChange(event) {
-    this.setState({ 
+    this.setState({
       abstraction: event.target.value
     })
   }
   handleOrcidChange(event) {
-    this.setState({ 
+    this.setState({
       orcid: event.target.value
     })
   }
   handleFileChange(event) {
-    this.setState({
-      paper_txt: 'hi'
+    var file = event.target.files[0];
+    var reader = new FileReader();
+    reader.onload = () => this.setState({
+      paper_txt: reader.result
     })
+    reader.readAsText(file);
   }
   handleSubmit(event) {
     alert('Hi ' + this.state.orcid + ' ,your post is submitted!');
@@ -77,7 +80,8 @@ class Trynow extends Component {
         tel: this.state.phone,
         email: this.state.email,
         abstract: this.state.abstraction,
-        orcid: this.state.orcid
+        orcid: this.state.orcid,
+        paper_txt: this.state.paper_txt
       })
     })
   }
@@ -111,7 +115,7 @@ class Trynow extends Component {
           <label>ORCID</label>
           <input className="u-full-width" type="text" placeholder="Your ORCID" value={this.state.orcid} onChange={this.handleOrcidChange} />
           <label>File</label>
-          <input className="u-full-width" type="file" onChange={this.handleFileChange} />
+          <input className="u-full-width" type="file" accept=".txt" onChange={this.handleFileChange} />
           <input className="button btn-dark u-pull-right" type="submit" value="Submit"></input>
         </form>
         <p>Original taste.</p>
