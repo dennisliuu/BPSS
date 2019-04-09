@@ -24,7 +24,7 @@ class Trynow extends Component {
         <div className="container-team">
           <div className="team-col border mt-10">
             <div className="m-3">
-              <img src={"https://via.placeholder.com/350"} alt="imgplaceholder" />
+              {/* <img src={"https://via.placeholder.com/350"} alt="imgplaceholder" /> */}
               <div className="content text-left">
                 <h5>Wei-Jen Liu</h5>
                 <p>北科理組文青</p>
@@ -34,7 +34,7 @@ class Trynow extends Component {
           </div>
           <div className="team-col border">
             <div className="m-3">
-              <img src={"https://via.placeholder.com/350"} alt="imgplaceholder" />
+              {/* <img src={"https://via.placeholder.com/350"} alt="imgplaceholder" /> */}
               <div className="content text-left">
                 <h5>Wei-Jen Liu</h5>
                 <p>北科理組文青</p>
@@ -44,7 +44,7 @@ class Trynow extends Component {
           </div>
           <div className="team-col border ml-49 mt-_10">
             <div className="m-3">
-              <img src={"https://via.placeholder.com/350"} alt="imgplaceholder" />
+              {/* <img src={"https://via.placeholder.com/350"} alt="imgplaceholder" /> */}
               <div className="content text-left">
                 <h5>Wei-Jen Liu</h5>
                 <p>北科理組文青</p>
