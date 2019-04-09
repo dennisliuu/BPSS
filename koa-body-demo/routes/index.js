@@ -9,8 +9,7 @@ mongoose.connect("mongodb://140.124.72.124:8080/paper", {
 });
 
 const Block = mongoose.model("Block", {
-    fName: String,
-    lName: String,
+    fullName: String,
     tel: String,
     org: String,
     email: String,
