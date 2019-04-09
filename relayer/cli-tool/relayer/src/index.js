@@ -25,10 +25,10 @@ class RelayerCommand extends Command {
   }
 }
 
-RelayerCommand.description = `Describe the command here
-...
-Extra documentation goes here
-`
+// RelayerCommand.description = `Describe the command here
+// ...
+// Extra documentation goes here
+// `
 
 RelayerCommand.args = [{name: "param"}, ]
 
