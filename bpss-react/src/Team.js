@@ -15,7 +15,7 @@ class Trynow extends Component {
         </p>
         <a
           className="button btn-dark "
-          href="https://fathomless-lake-78876.herokuapp.com/"
+          href="https://sites.google.com/mail.ntut.edu.tw/desl/home?fbclid=IwAR3BpTjgpF4Prb3N3bm0oVil0CUYapB2hEKLhL1Bavjl1sF3HbZcFsz5dm8"
           target="_blank"
           rel="noopener noreferrer"
         >
