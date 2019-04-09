@@ -9,7 +9,7 @@ class Trynow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      fullname: '',
+      fullName: '',
       organization: '',
       phone: '',
       email: '',
@@ -88,8 +88,8 @@ class Trynow extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="six columns">
-              <label>Full name: {this.state.fullname}</label>
-              <input className="u-full-width" type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.handleNameChange} />
+              <label>Full name: {this.state.fullName}</label>
+              <input className="u-full-width" type="text" placeholder="Full Name" value={this.state.fullName} onChange={this.handleNameChange} />
             </div>
             <div className="six columns">
               <label>Organization</label>
