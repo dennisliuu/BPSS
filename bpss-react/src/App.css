@@ -223,3 +223,10 @@ strong {
       transform: translateY(5px);
   }
 }
+
+.slideUP {
+  transition: transform .3s ease-in-out;
+}
+.slideUP:hover {
+  transform: translateY(-20px);
+}
