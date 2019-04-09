@@ -30,7 +30,7 @@ class Trynow extends Component {
 
   handleNameChange(event) {
     this.setState({ 
-      fullname: event.target.value
+      fullName: event.target.value
     })
   }
   handleOrganizationChange(event) {
@@ -72,7 +72,7 @@ class Trynow extends Component {
         'Content-Type': 'application/JSON'
       },
       body: JSON.stringify({
-        fullname: this.state.fullname,
+        fullName: this.state.fullName,
         org: this.state.organization,
         tel: this.state.phone,
         email: this.state.email,
@@ -88,7 +88,7 @@ class Trynow extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="six columns">
-              <label>Full name: {this.state.fullName}</label>
+              <label>Full name</label>
               <input className="u-full-width" type="text" placeholder="Full Name" value={this.state.fullName} onChange={this.handleNameChange} />
             </div>
             <div className="six columns">
