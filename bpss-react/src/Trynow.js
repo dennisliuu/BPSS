@@ -14,7 +14,8 @@ class Trynow extends Component {
       phone: '',
       email: '',
       abstraction: '',
-      orcid: ''
+      orcid: '',
+      paper_txt: ''
     };
 
     this.handleNameChange = this.handleNameChange.bind(this)
@@ -23,6 +24,7 @@ class Trynow extends Component {
     this.handleEmailChange = this.handleEmailChange.bind(this);
     this.handleAbstractionChange = this.handleAbstractionChange.bind(this);
     this.handleOrcidChange = this.handleOrcidChange.bind(this);
+    this.handleFileChange = this.handleFileChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -56,6 +58,11 @@ class Trynow extends Component {
       orcid: event.target.value
     })
   }
+  handleFileChange(event) {
+    this.setState({
+      paper_txt: 'hi'
+    })
+  }
   handleSubmit(event) {
     alert('Hi ' + this.state.orcid + ' ,your post is submitted!');
     event.preventDefault();
@@ -66,10 +73,10 @@ class Trynow extends Component {
       },
       body: JSON.stringify({
         fullname: this.state.fullname,
-        organization: this.state.organization,
-        phone: this.state.phone,
+        org: this.state.organization,
+        tel: this.state.phone,
         email: this.state.email,
-        abstraction: this.state.abstraction,
+        abstract: this.state.abstraction,
         orcid: this.state.orcid
       })
     })
@@ -103,6 +110,8 @@ class Trynow extends Component {
           <input className="u-full-width" type="text" placeholder="About this post" value={this.state.abstraction} onChange={this.handleAbstractionChange} />
           <label>ORCID</label>
           <input className="u-full-width" type="text" placeholder="Your ORCID" value={this.state.orcid} onChange={this.handleOrcidChange} />
+          <label>File</label>
+          <input className="u-full-width" type="file" onChange={this.handleFileChange} />
           <input className="button btn-dark u-pull-right" type="submit" value="Submit"></input>
         </form>
         <p>Nothing to read. Just give it a free try.</p>
