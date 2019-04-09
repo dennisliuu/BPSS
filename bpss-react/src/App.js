@@ -81,7 +81,7 @@ class App extends Component {
         </header> */}
           <div className="container-Spon bg-dark">
             <div className="bg-white spon-col">&#9400; Dennis 2019</div>
-            <div className="bg-white spon-col"><i className="far fa-hand-point-down"></i> Scroll down</div>
+            <div className="bg-white spon-col"><i className="far fa-hand-point-down arrowBounce"></i> Scroll down</div>
             <div className="bg-dark color-w spon-col">Sponsor</div>
             <div className="bg-dark color-w spon-col">Sponsor</div>
             <div className="bg-dark color-w spon-col">Sponsor</div>

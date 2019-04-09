@@ -114,7 +114,7 @@ class Trynow extends Component {
           <input className="u-full-width" type="file" onChange={this.handleFileChange} />
           <input className="button btn-dark u-pull-right" type="submit" value="Submit"></input>
         </form>
-        <p>Nothing to read. Just give it a free try.</p>
+        <p>Original taste.</p>
         <a className="button btn-dark" href="https://fathomless-lake-78876.herokuapp.com/" target="_blank" rel="noopener noreferrer">Here to go &nbsp;<i className="fas fa-chevron-right"></i></a>
         <img src={undraw_creative_experiment} className="try-logo" alt="logo" />
       </div>

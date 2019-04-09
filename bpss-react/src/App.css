@@ -139,7 +139,6 @@ strong {
   text-align: left;
 }
 
-
 .color-w {
   color: #fff;
 }
@@ -204,3 +203,23 @@ strong {
   color: #eee !important;
 }
 
+.font-3 {
+  font-size: 3rem;
+}
+
+.arrowBounce {
+  animation: bounce 2s infinite;
+  position: relative;
+}
+
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+      transform: translateY(0);
+  }
+  40% {
+      transform: translateY(15px);
+  }
+  60% {
+      transform: translateY(5px);
+  }
+}
