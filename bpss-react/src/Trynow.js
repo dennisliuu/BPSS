@@ -9,7 +9,7 @@ class Trynow extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
+      fullname: '',
       organization: '',
       phone: '',
       email: '',
@@ -17,21 +17,45 @@ class Trynow extends Component {
       orcid: ''
     };
 
-    this.handleChange = this.handleChange.bind(this);
+    this.handleNameChange = this.handleNameChange.bind(this)
+    this.handleOrganizationChange = this.handleOrganizationChange.bind(this);
+    this.handlePhoneChange = this.handlePhoneChange.bind(this);
+    this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleAbstractionChange = this.handleAbstractionChange.bind(this);
+    this.handleOrcidChange = this.handleOrcidChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleChange(event) {
+  handleNameChange(event) {
     this.setState({ 
-      name: event.target.name,
-      organization: event.target.organization,
-      phone: event.target.phone,
-      email: event.target.email,
-      abstraction: event.target.abstraction,
-      orcid: event.target.orcid
-    });
+      fullname: event.target.value
+    })
   }
-
+  handleOrganizationChange(event) {
+    this.setState({ 
+      organization: event.target.value
+    })
+  }
+  handlePhoneChange(event) {
+    this.setState({ 
+      phone: event.target.value
+    })
+  }
+  handleEmailChange(event) {
+    this.setState({ 
+      email: event.target.value
+    })
+  }
+  handleAbstractionChange(event) {
+    this.setState({ 
+      abstraction: event.target.value
+    })
+  }
+  handleOrcidChange(event) {
+    this.setState({ 
+      orcid: event.target.value
+    })
+  }
   handleSubmit(event) {
     alert('Hi ' + this.state.orcid + ' ,your post is submitted!');
     event.preventDefault();
@@ -41,7 +65,7 @@ class Trynow extends Component {
         'Content-Type': 'application/JSON'
       },
       body: JSON.stringify({
-        name: this.state.name,
+        fullname: this.state.fullname,
         organization: this.state.organization,
         phone: this.state.phone,
         email: this.state.email,
@@ -57,28 +81,28 @@ class Trynow extends Component {
         <form onSubmit={this.handleSubmit}>
           <div className="row">
             <div className="six columns">
-              <label>Name</label>
-              <input className="u-full-width" type="text" placeholder="Full Name" value={this.state.name} onChange={this.handleChange} />
+              <label>Full name: {this.state.fullname}</label>
+              <input className="u-full-width" type="text" placeholder="Full Name" value={this.state.fullname} onChange={this.handleNameChange} />
             </div>
             <div className="six columns">
               <label>Organization</label>
-              <input className="u-full-width" type="text" placeholder="Organization" value={this.state.organization} onChange={this.handleChange} />
+              <input className="u-full-width" type="text" placeholder="Organization" value={this.state.organization} onChange={this.handleOrganizationChange} />
             </div>
           </div>
           <div className="row">
             <div className="six columns">
               <label>Phone</label>
-              <input className="u-full-width" type="tel" placeholder="Phone" value={this.state.phone} onChange={this.handleChange} />
+              <input className="u-full-width" type="tel" placeholder="Phone" value={this.state.phone} onChange={this.handlePhoneChange} />
             </div>
             <div className="six columns">
               <label>Email</label>
-              <input className="u-full-width" type="email" placeholder="test@mailbox.com" value={this.state.email} onChange={this.handleChange} />
+              <input className="u-full-width" type="email" placeholder="test@mailbox.com" value={this.state.email} onChange={this.handleEmailChange} />
             </div>
           </div>
           <label>Abstraction</label>
-          <input className="u-full-width" type="text" placeholder="About this post" value={this.state.abstraction} onChange={this.handleChange} />
+          <input className="u-full-width" type="text" placeholder="About this post" value={this.state.abstraction} onChange={this.handleAbstractionChange} />
           <label>ORCID</label>
-          <input className="u-full-width" type="text" placeholder="Your ORCID" value={this.state.orcid} onChange={this.handleChange} />
+          <input className="u-full-width" type="text" placeholder="Your ORCID" value={this.state.orcid} onChange={this.handleOrcidChange} />
           <input className="button btn-dark u-pull-right" type="submit" value="Submit"></input>
         </form>
         <p>Nothing to read. Just give it a free try.</p>
