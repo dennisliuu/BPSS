@@ -3,9 +3,9 @@ import React, { Component } from 'react';
 import './App.css';
 import './normalize.css'
 import './skeleton.css'
-// SVG
-import undraw_connected_world from './undraw_connected_world.svg'
+
 // JS
+import Landing from './Landing'
 import Trynow from './Trynow'
 import Intro from './Intro'
 import Blocktable from './Blocktable'
@@ -17,77 +17,7 @@ class App extends Component {
     return (
       <div className="App">
         <a className="button backtop slideUP" href="#"><i className="fas fa-arrow-up"></i></a>
-        <div className="landing">
-          <div className="container">
-            <nav className="navbar pt-1">
-              <ul className="navbar-list">
-                <li className="navbar-item">
-                  <p className="navbar-link nav-brand" href="#">BPASS</p>
-                </li>
-                <li className="navbar-item">
-                  <a className="navbar-link" href="#trynow">Try now!</a>
-                </li>
-                <li className="navbar-item">
-                  <a className="navbar-link" href="#intro">Intro</a>
-                </li>
-                <li className="navbar-item">
-                  <a className="navbar-link" href="#blocktable">Blocktable</a>
-                </li>
-                <li className="navbar-item">
-                  <a className="navbar-link" href="#team">Team</a>
-                </li>
-                <li className="navbar-item">
-                  <a className="navbar-link" href="#more">More</a>
-                </li>
-                <li className="navbar-item u-pull-right">
-                  <a className="navbar-link nav-github" href="#"><i className="fab fa-github"></i></a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-          <div className="container">
-            <div className="row">
-              <div className="one column mt-10">
-                <div className="circle bg-dark">
-                  <i className="fas fa-lock color-w"></i>
-                </div>
-                <br />
-                <div className="circle bg-white">
-                  <i className="fas fa-lock-open up-down"></i>
-                </div>
-              </div>
-              <div className="six columns mt-10">
-                <h2>Blockchain-based <br /> paper submission system</h2>
-                <h6>Innovation, <strong><u>Blockchain</u></strong>, Encryption</h6>
-              </div>
-              <div className="five columns">
-                <img src={undraw_connected_world} className="bitcoin-logo" alt="bitcoin" />
-              </div>
-            </div>
-          </div>
-          {/* <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header> */}
-          <div className="container-Spon bg-dark">
-            <div className="bg-white spon-col">&#9400; Dennis 2019</div>
-            <div className="bg-white spon-col"><i className="far fa-hand-point-down arrowBounce"></i> Scroll down</div>
-            <div className="bg-dark color-w spon-col">Sponsor</div>
-            <div className="bg-dark color-w spon-col">Sponsor</div>
-            <div className="bg-dark color-w spon-col">Sponsor</div>
-            <div className="bg-dark color-w spon-col">Sponsor</div>
-          </div>
-        </div>
+        <Landing />
         <div className="container-sm" id="trynow">
           <Trynow />
         </div>
