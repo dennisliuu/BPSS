@@ -230,3 +230,7 @@ strong {
 .slideUP:hover {
   transform: translateY(-20px);
 }
+.scroll-link {
+  text-decoration: none;
+  color: #222;
+}

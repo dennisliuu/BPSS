@@ -1,5 +1,5 @@
 const {Command, flags} = require('@oclif/command')
-const generator = require('./lib/generatorKey')
+// const generator = require('./lib/generatorKey')
 const send = require('./lib/sender')
 const receive = require('./lib/receiver')
 const fs = require('fs')
@@ -11,9 +11,7 @@ class RelayerCommand extends Command {
     // this.log(`hello ${name} from ./src/index.js`)
     // this.log(args)
     this.log(`Hello! ./bin/run -h for more infomation`)
-    if (flags.gen) {
-      generator(args)
-    } else if (flags.send) {
+    if (flags.send) {
       send(args.param)
     } else if (flags.rec) {
       receive.main(flags.param)
@@ -36,7 +34,7 @@ RelayerCommand.flags = {
   version: flags.version({char: 'v'}),
   help: flags.help({char: 'h'}),
   // name: flags.string({char: 'n', description: 'name to print', multiple: true,}),
-  gen: flags.boolean({char: 'g', description: 'Get new key'}),
+  // gen: flags.boolean({char: 'g', description: 'Get new key'}),
   send: flags.boolean({char: 's', description: 'Send file with local Public key'}),
   rec: flags.boolean({char: 'r', description: 'Receive file'}),
   getName: flags.boolean({char: 'n', description: 'Read Author list'}),
