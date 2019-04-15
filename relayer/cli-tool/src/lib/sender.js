@@ -49,7 +49,8 @@ const main = async (orcid, fileName) => {
   // let buf = await new Buffer.from(paperTXT.toString(), 'base64')
   // fs.writeFileSync('pdf.pdf', buf)
 
-  let eA = await encryptFile(paperTXT, "private.pem")
+  // let eA = await encryptFile(paperTXT, "private.pem")
+  let eA = await encryptFile(paperTXT, ".config/id_rsa")
   eA = orcid + '\n\n' + eA
   // console.log(eA);
   fs.writeFileSync("./src/buf/send.txt", eA)
