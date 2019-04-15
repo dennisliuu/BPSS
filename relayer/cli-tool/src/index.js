@@ -23,7 +23,7 @@ class RelayerCommand extends Command {
 
 RelayerCommand.description = `Welcome to Relayer-cli 1.0.0
 ...
-[+] Use ssh-keygen and copy id_rsa and id_rsa.pub in .config
+[+] Use ssh-keygen and copy id_rsa and id_rsa.pub in .config/
 `
 
 RelayerCommand.args = [{name: "param"}, ]
@@ -33,7 +33,7 @@ RelayerCommand.flags = {
   help: flags.help({char: 'h'}),
   // name: flags.string({char: 'n', description: 'name to print', multiple: true}),
   send: flags.string({char: 's', description: 'Send file with local Public key [./relayer ORCID PDF]', multiple: true}),
-  rec: flags.string({char: 'r', description: 'Receive file'}),
+  rec: flags.string({char: 'r', description: 'Receive file [./relayer IP]'}),
   getName: flags.boolean({char: 'n', description: 'Read Author list'}),
   decode: flags.boolean({char: 'd', description: 'Decrypt file'})
 }
