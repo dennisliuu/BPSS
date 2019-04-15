@@ -23,8 +23,7 @@ class RelayerCommand extends Command {
 
 RelayerCommand.description = `Welcome to Relayer-cli 1.0.0
 ...
-Get your personal public key and private key first, and place it to ./
-and Rename as public.key and private.key.
+[+] Use ssh-keygen and make sure it save public key and private key in ~/USER/.ssh
 `
 
 RelayerCommand.args = [{name: "param"}, ]
