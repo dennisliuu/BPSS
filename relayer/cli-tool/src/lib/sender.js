@@ -6,9 +6,9 @@ const nc = new NetcatServer();
 const NodeRSA = require("node-rsa");
 const encryptFile = require("./encryptFile");
 
-const pdf2bs64 = () => {
+const pdf2bs64 = (fileName) => {
   new Promise((resolve, reject) => {
-    let buffer = fs.readFileSync("./src/store/paper.pdf");
+    let buffer = fs.readFileSync("./src/store/" + fileName);
     let bs64 = buffer.toString('base64');
     fs.writeFile("./src/buf/send1.txt", bs64, err => {
       if (err) throw err;
@@ -42,8 +42,8 @@ const sender = eA => {
   })
 };
 
-const main = async (orcid) => {
-  await pdf2bs64();
+const main = async (orcid, fileName) => {
+  await pdf2bs64(fileName);
   let paperTXT = await readTXT()
   // fs.writeFileSync('t1.txt', paperTXT)
   // let buf = await new Buffer.from(paperTXT.toString(), 'base64')
