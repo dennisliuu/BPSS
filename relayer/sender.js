@@ -4,7 +4,7 @@ const NetcatServer = require("netcat/server");
 const nc = new NetcatServer();
 
 const NodeRSA = require("node-rsa");
-const encryptFile = require("../BCPtest/utils/encryptFile");
+const encryptFile = require("./utils/encryptFile");
 
 const pdf2bs64 = () => {
   new Promise((resolve, reject) => {
@@ -49,7 +49,7 @@ const main = async () => {
   // let buf = await new Buffer.from(paperTXT.toString(), 'base64')
   // fs.writeFileSync('pdf.pdf', buf)
 
-  let eA = await encryptFile(paperTXT, "./pem/privateA.pem")
+  let eA = await encryptFile(paperTXT, "/home/dennis/.ssh/id_rsa")
   eA = process.argv[2] + '\n\n' + eA
   // console.log(eA);
   fs.writeFileSync("buf/send.txt", eA)
