@@ -1,5 +1,5 @@
 #!/bin/bash
-result=$(pgrep fcitx > /dev/null && echo 1)
+result=$(pgrep docker > /dev/null && echo 1)
 
 while true; do 
 	if [[ "$result" != "" ]];then
