@@ -4,12 +4,12 @@ const nunjucks = require('koa-nunjucks-2');
 const koaBody = require('koa-body');
 const router = require('./routes');
 
-const getUploadFileExt = require('./utils/getUploadFileExt');
-const getUploadFileName = require('./utils/getUploadFileName');
-const checkDirExist = require('./utils/checkDirExist');
-const getUploadDirName = require('./utils/getUploadDirName');
-const hashFile = require('./utils/hashFile')
-const postMongoDB = require('./utils/postMongoDB')
+// const getUploadFileExt = require('./utils/getUploadFileExt');
+// const getUploadFileName = require('./utils/getUploadFileName');
+// const checkDirExist = require('./utils/checkDirExist');
+// const getUploadDirName = require('./utils/getUploadDirName');
+// const hashFile = require('./utils/hashFile')
+// const postMongoDB = require('./utils/postMongoDB')
 
 const cors = require('@koa/cors');
 
