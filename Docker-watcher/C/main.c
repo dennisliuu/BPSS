@@ -11,7 +11,7 @@ int main()
 		char buf[256];
 		if (fgets(buf, sizeof(buf), ls))
 		{
-			printf("%s", buf);
+			printf("%s running", buf);
 		}
 		else
 			system("echo Not running");
