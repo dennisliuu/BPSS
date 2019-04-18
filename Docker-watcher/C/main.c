@@ -15,6 +15,7 @@ int main()
 		}
 		else
 			system("echo Not running");
+			// DO SOMETHING
 		pclose(ls);
 		// Every 10 mins check.
 		sleep(3600);
