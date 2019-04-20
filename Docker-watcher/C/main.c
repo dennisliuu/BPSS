@@ -21,6 +21,6 @@ int main()
 			// DO SOMETHING
 		pclose(ls);
 		// Every 10 mins check.
-		sleep(3);
+		sleep(600);
 	}
 }
