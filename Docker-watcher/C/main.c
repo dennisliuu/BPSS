@@ -1,23 +1,26 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 
 int main()
 {
 	while (1)
 	{
-		// Replace TARGET_IMAGE to images name
-		FILE *ls = popen("sudo docker ps | grep TARGET_IMAGE", "r");
+		FILE *ls = popen("docker ps", "r");
 		char buf[256];
-		if (fgets(buf, sizeof(buf), ls))
+		fgets(buf, sizeof(buf), ls);
+		// Replace TARGET_IMAGE to images name
+		char* pPosition = strstr(buf, "TARGET_IMAGE");
+		if (pPosition)
 		{
-			printf("%s running", buf);
+			printf("%s running", pPosition);
 		}
 		else
 			system("echo Not running");
 			// DO SOMETHING
 		pclose(ls);
 		// Every 10 mins check.
-		sleep(3600);
+		sleep(3);
 	}
 }
