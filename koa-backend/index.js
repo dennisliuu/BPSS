@@ -59,7 +59,7 @@ app
 
 router
 	.get('/', (ctx, next) => {
-		ctx.body = 'Hello World!';
+		ctx.body = 'Welcome to BPASS Homepage!';
 	})
 	.post('/', (ctx, next) => {
 		ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
