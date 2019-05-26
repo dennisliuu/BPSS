@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 // CSS
 import './normalize.css'
 import './skeleton.css'
@@ -115,11 +116,11 @@ class Trynow extends Component {
           <label>ORCID</label>
           <input className="u-full-width" type="text" placeholder="Your ORCID" value={this.state.orcid} onChange={this.handleOrcidChange} />
           <label>File</label>
-          <input className="u-full-width" type="file" accept=".txt" onChange={this.handleFileChange} />
+          <input className="u-full-width" type="file" accept=".txt,.pdf" onChange={this.handleFileChange} />
           <input className="button btn-dark u-pull-right" type="submit" value="Submit"></input>
         </form>
-        <p>Original taste.</p>
-        <a className="button btn-dark" href="https://fathomless-lake-78876.herokuapp.com/" target="_blank" rel="noopener noreferrer">Here to go &nbsp;<i className="fas fa-chevron-right"></i></a>
+        {/* <p>Original taste.</p>
+        <a className="button btn-dark" href="https://fathomless-lake-78876.herokuapp.com/" target="_blank" rel="noopener noreferrer">Here to go &nbsp;<i className="fas fa-chevron-right"></i></a> */}
         <img src={undraw_creative_experiment} className="try-logo" alt="logo" />
       </div>
     )
