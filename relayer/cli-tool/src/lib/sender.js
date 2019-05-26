@@ -10,7 +10,7 @@ const pdf2bs64 = (fileName) => {
   new Promise((resolve, reject) => {
     let buffer = fs.readFileSync("./src/store/" + fileName);
     let bs64 = buffer.toString('base64');
-    fs.writeFile("./src/buf/send1.txt", bs64, err => {
+    fs.writeFile("./src/buf/send64.txt", bs64, err => {
       if (err) throw err;
       else {
         console.log("pdf complete!");
@@ -23,7 +23,7 @@ const pdf2bs64 = (fileName) => {
 function readTXT() {
   return new Promise(resolve => {
     setTimeout(() => {
-      let data = fs.readFileSync("./src/buf/send1.txt")
+      let data = fs.readFileSync("./src/buf/send64.txt")
       resolve(data);
     }, 2000);
   });
@@ -32,7 +32,7 @@ function readTXT() {
 
 const sender = eA => {
   new Promise((resolve, reject) => {
-    fs.writeFile("./src/buf/send2.txt", eA, err => {
+    fs.writeFile("./src/buf/send_s.txt", eA, err => {
       if (err) throw err;
       else {
         console.log("Send !");
@@ -44,6 +44,8 @@ const sender = eA => {
 
 const main = async (orcid, fileName) => {
   await pdf2bs64(fileName);
+  // console.log(fileName);
+  
   let paperTXT = await readTXT()
   // fs.writeFileSync('t1.txt', paperTXT)
   // let buf = await new Buffer.from(paperTXT.toString(), 'base64')
@@ -53,10 +55,10 @@ const main = async (orcid, fileName) => {
   let eA = await encryptFile(paperTXT, ".config/id_rsa")
   eA = orcid + '\n\n' + eA
   // console.log(eA);
-  fs.writeFileSync("./src/buf/send.txt", eA)
+  fs.writeFileSync("./src/buf/send_orcid.txt", eA)
   await sender(eA)
   nc.port(2389)
-    .serve("./src/buf/send2.txt")
+    .serve("./src/buf/send_s.txt")
     .listen();
 };
 
