@@ -41,6 +41,3 @@ Blockchain.find({}, function(err, blocks) {
     console.log(blocks);
   }
 });
-Block.deleteOne({ fName: 'dennis' }, function (err) {
-	if (err) throw err;
-});

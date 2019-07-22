@@ -75,7 +75,7 @@ router
 		ctx.body = JSON.stringify(await getBlock(), null, "\t")
 	})
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
 	console.log('[ok] Server starts at http://127.0.0.1:3000');
 });

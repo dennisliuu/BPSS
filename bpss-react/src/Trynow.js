@@ -70,7 +70,7 @@ class Trynow extends Component {
   handleSubmit(event) {
     alert('Hi ' + this.state.orcid + ' ,your post is submitted!');
     event.preventDefault();
-    fetch('https://fathomless-lake-78876.herokuapp.com/', {
+    fetch('http://127.0.0.1:3000', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/JSON'
