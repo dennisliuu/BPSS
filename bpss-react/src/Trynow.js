@@ -14,6 +14,7 @@ class Trynow extends Component {
       organization: '',
       phone: '',
       email: '',
+      title: '',
       abstraction: '',
       orcid: '',
       paper_txt: ''
@@ -23,6 +24,7 @@ class Trynow extends Component {
     this.handleOrganizationChange = this.handleOrganizationChange.bind(this);
     this.handlePhoneChange = this.handlePhoneChange.bind(this);
     this.handleEmailChange = this.handleEmailChange.bind(this);
+    this.handleTitleChange = this.handleTitleChange.bind(this);
     this.handleAbstractionChange = this.handleAbstractionChange.bind(this);
     this.handleOrcidChange = this.handleOrcidChange.bind(this);
     this.handleFileChange = this.handleFileChange.bind(this)
@@ -49,6 +51,11 @@ class Trynow extends Component {
       email: event.target.value
     })
   }
+  handleTitleChange(event) {
+    this.setState({
+      title: event.target.value
+    })
+  }
   handleAbstractionChange(event) {
     this.setState({
       abstraction: event.target.value
@@ -68,9 +75,9 @@ class Trynow extends Component {
     reader.readAsText(file);
   }
   handleSubmit(event) {
-    alert('Hi ' + this.state.orcid + ' ,your post is submitted!');
+    alert('Hi ' + this.state.orcid + ' ,your post is submitted!' + 'On: ' + new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[0]);
     event.preventDefault();
-    fetch('http://127.0.0.1:3000', {
+    fetch('http://127.0.0.1:3000/', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/JSON'
@@ -80,9 +87,12 @@ class Trynow extends Component {
         org: this.state.organization,
         tel: this.state.phone,
         email: this.state.email,
+        title: this.state.title,
         abstract: this.state.abstraction,
         orcid: this.state.orcid,
-        paper_txt: this.state.paper_txt
+        paper_txt: this.state.paper_txt,
+        date: new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[0],
+        time: new Date(new Date().getTime() - new Date().getTimezoneOffset() * 60000).toISOString().split('T')[1].split('.')[0]
       })
     })
   }
@@ -111,6 +121,8 @@ class Trynow extends Component {
               <input className="u-full-width" type="email" placeholder="test@mailbox.com" value={this.state.email} onChange={this.handleEmailChange} />
             </div>
           </div>
+          <label>Title</label>
+          <input className="u-full-width" type="text" placeholder="Title" value={this.state.title} onChange={this.handleTitleChange} />
           <label>Abstraction</label>
           <input className="u-full-width" type="text" placeholder="About this post" value={this.state.abstraction} onChange={this.handleAbstractionChange} />
           <label>ORCID</label>

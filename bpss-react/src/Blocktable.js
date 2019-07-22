@@ -12,7 +12,7 @@ class Blocktable extends Component {
         }
     }
     async componentDidMount() {
-        await fetch('https://fathomless-lake-78876.herokuapp.com/blockchains')
+        await fetch('http://127.0.0.1:3000/blockchains')
             .then(response => response.json())
             .then(data => {
                 this.setState({ blockchains: data })
