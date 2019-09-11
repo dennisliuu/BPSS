@@ -4,7 +4,6 @@ const nunjucks = require('koa-nunjucks-2');
 const koaBody = require('koa-body');
 const router = require('./routes');
 
-const getUploadFileExt = require('./utils/getUploadFileExt');
 const checkDirExist = require('./utils/checkDirExist');
 const getUploadDirName = require('./utils/getUploadDirName');
 
@@ -30,7 +29,6 @@ app.use(koaBody({
     // maxFieldsSize: 2 * 1024 * 1024,
     onFileBegin: (name, file) => {
       console.log(file);
-      const ext = getUploadFileExt(file.name);
       const dirName = getUploadDirName();
       const dir = path.join(__dirname, `public/upload/${dirName}`);
       checkDirExist(dir);

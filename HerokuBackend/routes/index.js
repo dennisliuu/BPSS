@@ -1,6 +1,9 @@
+// 引入 router: 即當頁面網址為 '/' 或 '/blocks' 或 '/blockchain' 該做什麼 
 const router = require('koa-router')()
+// 引入 mongoose: 即使用 mongoose 這個套件操作 MongoDB
 const mongoose = require("mongoose");
 
+// MongoDB connect
 mongoose.connect("mongodb://140.124.72.124:8080/paper", {
     useNewUrlParser: true
 });

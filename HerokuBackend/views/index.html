@@ -6,6 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta http-equiv="X-UA-Compatible" content="ie=edge">
 	<title>Upload Page UI</title>
+	<!-- 引入線上 CSS library -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:100,300" />
@@ -13,6 +14,7 @@
 		integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
 
+<!-- 自定義 CSS -->
 <style type="text/css">
 	html,
 	body {
@@ -705,7 +707,6 @@
 	</div>
 
 	<script type="text/javascript">
-
 		//DOM
 		const $ = document.querySelector.bind(document);
 		var navShowBool = false;
@@ -714,7 +715,6 @@
 			$("#filename").value = this.value.replace(/.*[\/\\]/, '');
 			// when you look at the bug, the bug is also look at you.
 		};
-
 
 		$(".navbar-toggler").addEventListener("click", () => {
 			navShowBool = !navShowBool;
@@ -727,7 +727,6 @@
 
 		var nav = $("#main_nav");
 		var position = 0;
-
 		window.addEventListener("scroll", function () {
 			if (position < window.pageYOffset) {
 				nav.classList.add("up");
@@ -739,8 +738,6 @@
 				position = window.pageYOffset;
 			}
 		});
-
-
 	</script>
 </body>
 
