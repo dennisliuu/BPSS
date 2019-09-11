@@ -1,7 +1,4 @@
-const Koa = require('koa')
 const router = require('koa-router')()
-// const getData = require('../utils/getData')
-
 const mongoose = require("mongoose");
 
 mongoose.connect("mongodb://140.124.72.124:8080/paper", {
@@ -9,16 +6,15 @@ mongoose.connect("mongodb://140.124.72.124:8080/paper", {
 });
 
 const Block = mongoose.model("Block", {
-    fullName: String,
+    firstName: String,
+    lastName: String,
     tel: String,
     org: String,
     email: String,
     title: String,
     abstract: String,
     orcid: String,
-    paper_txt: String,
-    date: String,
-    time: String
+    filename: String
 });
 const getBlock = () =>
     new Promise((resolve, reject) => {
@@ -26,7 +22,6 @@ const getBlock = () =>
             if (err) {
                 console.log(err);
             } else {
-                // console.log(blocks);
                 resolve(blocks)
             }
         })
@@ -43,30 +38,29 @@ const getBlockchain = () =>
             if (err) {
                 console.log(err);
             } else {
-                // console.log(blocks);
                 resolve(blocks)
             }
         })
     })
 
 router.get("/", async ctx => {
-  await ctx.render("index");
+    await ctx.render("index");
 });
 
 router.post("/", ctx => {
-  ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
-  console.log(JSON.stringify(ctx.request.body));
-  const new_block = new Block(ctx.request.body);
-  console.log(new_block);
-  new_block.save().then(() => console.log("Add success!"));
+    ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
+    console.log(JSON.stringify(ctx.request.body));
+    const new_block = new Block(ctx.request.body);
+    console.log(new_block);
+    new_block.save().then(() => console.log("Add success!"));
 });
 
 router.get("/blockchains", async ctx => {
-  ctx.body = JSON.stringify(await getBlockchain(), null, "\t")
+    ctx.body = JSON.stringify(await getBlockchain(), null, "\t")
 })
 
 router.get("/blocks", async ctx => {
-  ctx.body = JSON.stringify(await getBlock(), null, "\t")
+    ctx.body = JSON.stringify(await getBlock(), null, "\t")
 })
 
 module.exports = router;
