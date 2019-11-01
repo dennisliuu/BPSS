@@ -2,7 +2,7 @@
 // https://github.com/sendgrid/sendgrid-nodejs
 const sgMail = require('@sendgrid/mail');
 const fs = require('fs');
-API_KEY = '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'
+API_KEY = '---'
 sgMail.setApiKey(API_KEY);
 
 const msg = {
