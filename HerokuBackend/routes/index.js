@@ -17,8 +17,7 @@ const Block = mongoose.model("Block", {
     title: String,
     abstract: String,
     orcid: String,
-    filename: String,
-    date: String
+    filename: String
 });
 const getBlock = () =>
     new Promise((resolve, reject) => {
@@ -51,8 +50,12 @@ router.get("/", async ctx => {
     await ctx.render("index");
 });
 
-router.post("/", ctx => {
-    ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
+router.post("/", async ctx => {
+    
+    // Replace here, use render for customize html file
+    // ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
+    await ctx.render("index2", { a: 'apple', b: 'ball', c: 'cat' });
+
     console.log(JSON.stringify(ctx.request.body));
     const new_block = new Block(ctx.request.body);
     console.log(new_block);

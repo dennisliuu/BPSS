@@ -37,11 +37,11 @@ app.use(koaBody({
       app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
       app.context.uploadpath[name] = `${dirName}/${fileName}`;
       
-      const { spawn } = require('child_process');
-      const pyProg = spawn('python', ['./utils/sendMail.py']);
-      pyProg.stdout.on('res', function(res) {
-          console.log(res.toString());
-      })
+      // const { spawn } = require('child_process');
+      // const pyProg = spawn('python', ['./utils/sendMail.py']);
+      // pyProg.stdout.on('res', function(res) {
+      //     console.log(res.toString());
+      // })
 
     },
   }
