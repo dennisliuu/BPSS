@@ -44,7 +44,7 @@ const sender = eA => {
 const main = async (orcid, fileName) => {
   await pdf2bs64(fileName);
   let paperTXT = await readTXT()
-  let eA = await encryptFile(paperTXT, ".config/id_rsa")
+  let eA = await encryptFile(paperTXT, "private.pem")
   eA = orcid + '\n\n' + eA
   fs.writeFileSync("./src/buf/send_orcid.txt", eA)
   await sender(eA)

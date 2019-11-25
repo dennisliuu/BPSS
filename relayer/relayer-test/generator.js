@@ -1,3 +1,3 @@
-const generator = require("utils/generator")
+const generator = require("./utils/generator")
 
 generator('A', 'A')

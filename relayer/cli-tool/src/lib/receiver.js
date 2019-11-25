@@ -21,10 +21,10 @@ const buf2pdf = paperTXT => {
 
 function readTXT() {
     return new Promise(resolve => {
-        let data = fs.readFileSync("./src/buf/send.txt", "utf8")
-        resolve(data);
+        // let data = fs.readFileSync("./src/buf/send.txt", "utf8")
+        // resolve(data);
         setTimeout(() => {
-            let data = fs.readFileSync("buf/send.txt", "utf8")
+            let data = fs.readFileSync("./src/buf/send.txt", "utf8")
             resolve(data);
         }, 2000);
     });
