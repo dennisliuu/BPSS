@@ -1,4 +1,4 @@
-relayer
+# Relayer - BPSS
 =======
 
 Sender - Receiver
@@ -10,16 +10,16 @@ USAGE
 
 OPTIONS
 ```
-  -d, --decode     Decrypt file
   -h, --help       show CLI help
-  -n, --getName    Read Author list
   -r, --rec=rec    Receive file [./relayer IP]
   -s, --send=send  Send file with local Public key [./relayer ORCID PDF]
+  -d, --decode     Decrypt file
+  -n, --getName    Read Author list
   -v, --version    show CLI version
 ```
 
 DESCRIPTION
 ```
   ...
-  [+] Use ssh-keygen and copy id_rsa and id_rsa.pub in .config/
+  [+] Placed your public.key and private.key in the root folder
 ```
