@@ -7,13 +7,13 @@ var fs = require('fs')
  */
 function decryptFile(paperTXT, pub) {
 	return new Promise(resolve => {
-	    fs.readFile(pub, (err, data) => {
-            if (err) console.log(err)
-    	    var key = new NodeRSA(data);
-        	let rawText = key.decryptPublic(paperTXT, 'utf8');
-        	// console.log('解密 (S)：' + rawText);
+		fs.readFile(pub, (err, data) => {
+			if (err) console.log(err)
+			var key = new NodeRSA(data);
+			let rawText = key.decryptPublic(paperTXT, 'utf8');
+			// console.log('解密 (S)：' + rawText);
 			resolve(rawText)
-    	})
+		})
 	})
 }
 

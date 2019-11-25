@@ -3,7 +3,6 @@ const fs = require("fs");
 const NetcatServer = require("netcat/server");
 const nc = new NetcatServer();
 
-const NodeRSA = require("node-rsa");
 const encryptFile = require("./encryptFile");
 
 const pdf2bs64 = (fileName) => {
@@ -44,17 +43,9 @@ const sender = eA => {
 
 const main = async (orcid, fileName) => {
   await pdf2bs64(fileName);
-  // console.log(fileName);
-  
   let paperTXT = await readTXT()
-  // fs.writeFileSync('t1.txt', paperTXT)
-  // let buf = await new Buffer.from(paperTXT.toString(), 'base64')
-  // fs.writeFileSync('pdf.pdf', buf)
-
-  // let eA = await encryptFile(paperTXT, "private.pem")
   let eA = await encryptFile(paperTXT, ".config/id_rsa")
   eA = orcid + '\n\n' + eA
-  // console.log(eA);
   fs.writeFileSync("./src/buf/send_orcid.txt", eA)
   await sender(eA)
   nc.port(2389)
