@@ -9,7 +9,7 @@ const decryptFile = require("./decryptFile");
 const buf2pdf = paperTXT => {
     new Promise((resolve, reject) => {
         let buf = new Buffer.from(paperTXT.toString(), 'base64')
-        fs.writeFile("./src/store/paper.pdf", buf, err => {
+        fs.writeFile(`./src/store/paper_${Date.now()}.pdf`, buf, err => {
             if (err) throw err;
             else {
                 console.log("Save !");
