@@ -62,6 +62,15 @@ router.post("/", async ctx => {
     new_block.save().then(() => console.log("Add success!"));
 });
 
+router.get("/reviewer", async ctx => {
+    await ctx.render("reviewer")
+})
+
+router.post("/reviewer", async ctx => {
+    ctx.body = `Add comment success: ${JSON.stringify(ctx.request.body)}`
+    console.log(JSON.stringify(ctx.request.body));
+})
+
 router.get("/blockchains", async ctx => {
     ctx.body = JSON.stringify(await getBlockchain(), null, "\t")
 })
