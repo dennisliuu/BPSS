@@ -26,7 +26,6 @@ app.use(koaBody({
   formidable: {
     uploadDir: path.join(__dirname, 'public/upload'),
     keepExtensions: true,
-    // maxFieldsSize: 2 * 1024 * 1024,
     onFileBegin: (name, file) => {
       console.log(file);
       const dirName = getUploadDirName();
@@ -36,13 +35,6 @@ app.use(koaBody({
       file.path = `${dir}/${fileName}`;
       app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
       app.context.uploadpath[name] = `${dirName}/${fileName}`;
-      
-      // const { spawn } = require('child_process');
-      // const pyProg = spawn('python', ['./utils/sendMail.py']);
-      // pyProg.stdout.on('res', function(res) {
-      //     console.log(res.toString());
-      // })
-
     },
   }
 }));

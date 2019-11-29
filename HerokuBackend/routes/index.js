@@ -52,11 +52,7 @@ router.get("/", async ctx => {
 });
 
 router.post("/", async ctx => {
-    
-    // Replace here, use render for customize html file
-    // ctx.body = `Request Body: ${JSON.stringify(ctx.request.body)}`;
     await ctx.render("index2", { a: 'apple', b: 'ball', c: 'cat' });
-
     console.log(JSON.stringify(ctx.request.body));
     const new_block = new Block(ctx.request.body);
     console.log(new_block);
@@ -68,7 +64,7 @@ router.get("/reviewer", async ctx => {
 })
 
 router.post("/reviewer", async ctx => {
-    ctx.body = `Add comment success: ${JSON.stringify(ctx.request.body)}`
+    ctx.body = `${JSON.stringify(ctx.request.body, null, "\t")}`
     console.log(JSON.stringify(ctx.request.body));
 })
 

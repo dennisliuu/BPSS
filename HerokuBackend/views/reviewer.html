@@ -30,7 +30,7 @@
                     <img src="https://via.placeholder.com/75" class="py-3">
                     <h5 class="card-title">Reviewer comment</h5>
                     <p class="card-text">Select one of topic and leave your comment below!</p>
-                    <form>
+                    <form action="/reviewer" enctype="multipart/form-data" method="POST">
                         <div class="form-group">
                             <select class="form-control" id="exampleFormControlSelect1">
                                 <option>Game of Thrones</option>
@@ -39,23 +39,23 @@
                             </select>
                         </div>
                         <div class="form-group">
-                            <input type="name" class="form-control" id="exampleFormControlInput1" placeholder="name">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="name">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="ORCID">
+                            <input type="text" class="form-control" id="orcid" name="orcid" placeholder="ORCID">
                         </div>
 
                         <div class="form-group">
-                            <input type="email" class="form-control" id="exampleFormControlInput1"
+                            <input type="email" class="form-control" id="email" name="email"
                                 placeholder="name@example.com">
                         </div>
                         <div class="form-group">
-                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"
+                            <textarea class="form-control" id="comment" rows="3" name="comment"
                                 placeholder="write your comment!"></textarea>
                         </div>
                         <div class="form-group row pt-3">
                             <div class="mx-auto">
-                                <button type="submit" class="btn btn-outline-dark btn-lg ">Submit!</button>
+                                <button type="submit" class="btn btn-outline-dark btn-lg" onclick="return packComment()">Submit!</button>
                             </div>
                         </div>
                     </form>
@@ -63,6 +63,7 @@
             </div>
         </div>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
     <script>
         let data = `[
             {
@@ -76,7 +77,16 @@
 
         for (let key in obj) {
             console.log(obj[key].filename);
-        }</script>
+        }
+        
+        const packComment = function () {
+            const $ = document.querySelector.bind(document);
+            let comment = $('#comment').value
+            var bitArray = sjcl.hash.sha256.hash(comment);
+            var digest_sha256 = sjcl.codec.hex.fromBits(bitArray);
+            $('#comment').value = digest_sha256
+        }
+    </script>
 </body>
 
 
