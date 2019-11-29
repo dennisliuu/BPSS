@@ -17,7 +17,8 @@ const Block = mongoose.model("Block", {
     title: String,
     abstract: String,
     orcid: String,
-    filename: String
+    filename: String,
+    data: String
 });
 const getBlock = () =>
     new Promise((resolve, reject) => {

@@ -692,6 +692,9 @@
 										<div class="d-none">
 											<input id="filename" type="text" name="filename" placeholder="filename"></input>
 										</div>
+										<div class="d-none">
+											<input id="date" type="text" name="date" placeholder="date"></input>
+										</div>
 									</div>
 
 									<button type="submit" class="float-right btn btn-primary">
@@ -713,7 +716,9 @@
 
 		$('#file01').onchange = function () {
 			$("#filename").value = this.value.replace(/.*[\/\\]/, '');
-			// when you look at the bug, the bug is also look at you.
+			var rightNow = new Date();
+			var res = rightNow.toISOString().slice(0,10)
+			$("#date").value = res
 		};
 
 		$(".navbar-toggler").addEventListener("click", () => {
