@@ -18,7 +18,7 @@ const Block = mongoose.model("Block", {
     abstract: String,
     orcid: String,
     filename: String,
-    data: String
+    date: String
 });
 const getBlock = () =>
     new Promise((resolve, reject) => {
@@ -47,6 +47,14 @@ const getBlockchain = () =>
         })
     })
 
+const Reviewercomment = mongoose.model("Reviewercomment", {
+    titleSelect: String,
+    name: String,
+    orcid: String,
+    email: String,
+    comment: String
+})
+
 router.get("/", async ctx => {
     await ctx.render("index");
 });
@@ -66,6 +74,8 @@ router.get("/reviewer", async ctx => {
 router.post("/reviewer", async ctx => {
     ctx.body = `${JSON.stringify(ctx.request.body, null, "\t")}`
     console.log(JSON.stringify(ctx.request.body));
+    const new_reviewercomment = new Reviewercomment(ctx.request.body)
+    new_reviewercomment.save().then(() => console.log("Add success!"));
 })
 
 router.get("/blockchains", async ctx => {

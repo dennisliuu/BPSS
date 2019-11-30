@@ -12,9 +12,8 @@
         .container,
         .card,
         form {
-            max-width: 500px
+            max-width: 800px
         }
-
         body {
             background-image: linear-gradient(to right, #868f96 0%, #596164 100%);
         }
@@ -24,7 +23,7 @@
 
 <body class="bg-dark">
     <div class="container">
-        <div class="pt-5">
+        <div class="pt-3">
             <div class="card text-white bg-secondary mb-3 shadow-lg rounded">
                 <div class="card-body text-center">
                     <img src="https://via.placeholder.com/75" class="py-3">
@@ -32,14 +31,10 @@
                     <p class="card-text">Select one of topic and leave your comment below!</p>
                     <form action="/reviewer" enctype="multipart/form-data" method="POST">
                         <div class="form-group">
-                            <select class="form-control" id="exampleFormControlSelect1">
-                                <option>Game of Thrones</option>
-                                <option>BPSS</option>
-                                <option>Harry potter</option>
-                            </select>
+                            <select class="form-control" id="titleSelect" disabled required></select>
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="name">
+                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
                         </div>
                         <div class="form-group">
                             <input type="text" class="form-control" id="orcid" name="orcid" placeholder="ORCID">
@@ -51,11 +46,12 @@
                         </div>
                         <div class="form-group">
                             <textarea class="form-control" id="comment" rows="3" name="comment"
-                                placeholder="write your comment!"></textarea>
+                                placeholder="Write your comment!"></textarea>
                         </div>
-                        <div class="form-group row pt-3">
+                        <div class="form-group row mb-0">
                             <div class="mx-auto">
-                                <button type="submit" class="btn btn-outline-dark btn-lg" onclick="return packComment()">Submit!</button>
+                                <button type="submit" class="btn btn-outline-dark btn-lg"
+                                    onclick="return packComment()">Submit!</button>
                             </div>
                         </div>
                     </form>
@@ -65,20 +61,23 @@
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sjcl/1.0.8/sjcl.min.js"></script>
     <script>
-        let data = `[
-            {
-                "filename": "aaa"    },
-            {
-                "filename": "bbb"
-            }
-            ]`
-        var obj = JSON.parse(data)
-        console.log(obj)
+        // fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('localhost:3000/blocks')
+            .then(response => response.json())
+            .then(json => {
+                let titles = document.getElementById('titleSelect'), title = document.createDocumentFragment();
+                for (let key in json) {
+                    var option = document.createElement('option');
+                    option.value = json[key].title;
+                    option.style.cssText = 'width: 10px;'
+                    option.classList.add('text-break')
+                    option.appendChild(document.createTextNode(json[key].title));
+                    title.appendChild(option);
+                }
+                titles.appendChild(title);
+            })
+            .then(document.getElementById('titleSelect').removeAttribute("disabled"))
 
-        for (let key in obj) {
-            console.log(obj[key].filename);
-        }
-        
         const packComment = function () {
             const $ = document.querySelector.bind(document);
             let comment = $('#comment').value
