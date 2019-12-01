@@ -17,6 +17,8 @@
   "author": "GitHub",
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^7.1.2"
+    "electron": "^7.1.2",
+    "netcat": "^1.4.0",
+    "node-rsa": "^1.0.5"
   }
 }

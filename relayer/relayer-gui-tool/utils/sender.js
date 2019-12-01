@@ -1,18 +1,23 @@
 const fs = require("fs");
+const path = require('path');
 
+// Netcat tool
 const NetcatServer = require("netcat/server");
 const nc = new NetcatServer();
 
+// Custom lib
 const encryptFile = require("./encryptFile");
+
 
 const pdf2bs64 = (fileName) => {
     new Promise((resolve, reject) => {
-        let buffer = fs.readFileSync(document.getElementById("uploadFile").files[0].path);
+        let buffer = fs.readFileSync(fileName);
         let bs64 = buffer.toString('base64');
         fs.writeFile(path.join(__dirname, "buf/send64.txt"), bs64, err => {
             if (err) throw err;
             else {
-                console.log("pdf convert base64 complete!");
+                // console.log("pdf convert base64 complete!");
+                $('#send_console').innerHTML += "pdf convert base64 complete!<br />"
                 resolve()
             }
         })
@@ -33,23 +38,24 @@ const sender = eA => {
         fs.writeFile(path.join(__dirname, "buf/send_s.txt"), eA, err => {
             if (err) throw err;
             else {
-                console.log("Send !");
+                // console.log("Send !");
+                $('#send_console').innerText += "Send!"
                 resolve()
             }
         })
     })
 };
 
-const sender = async (orcid, fileName) => {
+const sender_main = async (orcid, fileName, privateKey) => {
     await pdf2bs64(fileName);
     let paperTXT = await readTXT()
-    let eA = await encryptFile(paperTXT, "private.pem")
+    let eA = await encryptFile(paperTXT, privateKey)
     eA = orcid + '\n\n' + eA
-    fs.writeFileSync("./src/buf/send_orcid.txt", eA)
+    fs.writeFileSync(path.join(__dirname, "buf/send_orcid.txt"), eA)
     await sender(eA)
     nc.port(2389)
-        .serve("./src/buf/send_s.txt")
+        .serve(path.join(__dirname, "buf/send_s.txt"))
         .listen();
 };
 
-module.exports = sender
+module.exports = sender_main

@@ -5,10 +5,11 @@ const NetcatClient = require("netcat/client");
 const nc = new NetcatClient();
 
 const receiver = async (ip) => {
-    nc.addr(ip)
+    await nc.addr(ip)
         .port(2389)
         .connect()
-        .pipe(fs.createWriteStream(path.join(__dirname, "buf/send.txt")
+        .pipe(fs.createWriteStream(path.join(__dirname, "buf/rec.txt")))
+        .pipe($("#rec_console").innerText += "Save!")
 };
 
 module.exports = receiver;
