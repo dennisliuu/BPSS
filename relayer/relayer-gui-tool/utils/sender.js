@@ -8,7 +8,7 @@ const nc = new NetcatServer();
 // Custom lib
 const encryptFile = require("./encryptFile");
 
-
+// Convert pdf to base64
 const pdf2bs64 = (fileName) => {
     new Promise((resolve, reject) => {
         let buffer = fs.readFileSync(fileName);
@@ -16,7 +16,6 @@ const pdf2bs64 = (fileName) => {
         fs.writeFile(path.join(__dirname, "buf/send64.txt"), bs64, err => {
             if (err) throw err;
             else {
-                // console.log("pdf convert base64 complete!");
                 $('#send_console').innerHTML += "pdf convert base64 complete!<br />"
                 resolve()
             }
@@ -24,6 +23,7 @@ const pdf2bs64 = (fileName) => {
     })
 }
 
+// Read file
 function readTXT() {
     return new Promise(resolve => {
         setTimeout(() => {
@@ -33,12 +33,12 @@ function readTXT() {
     });
 };
 
+// Create file to send
 const sender = eA => {
     new Promise((resolve, reject) => {
         fs.writeFile(path.join(__dirname, "buf/send_s.txt"), eA, err => {
             if (err) throw err;
             else {
-                // console.log("Send !");
                 $('#send_console').innerText += "Send!"
                 resolve()
             }
@@ -46,6 +46,7 @@ const sender = eA => {
     })
 };
 
+// Send file
 const sender_main = async (orcid, fileName, privateKey) => {
     await pdf2bs64(fileName);
     let paperTXT = await readTXT()

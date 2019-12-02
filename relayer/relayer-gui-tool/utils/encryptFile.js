@@ -1,5 +1,5 @@
-var NodeRSA = require('node-rsa')
-var fs = require('fs')
+const NodeRSA = require('node-rsa')
+// var fs = require('fs')
 
 /**
  * @param  {String} paperTXT
