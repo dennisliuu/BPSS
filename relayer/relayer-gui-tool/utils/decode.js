@@ -15,7 +15,7 @@ const buf2pdf = (paperTXT, filetype) => {
                 if (err) throw err;
                 else {
                     // console.log("Save !");
-                    $('#decode_console').innerHTML += "Save !<br />"
+                    $('#decode_console').innerHTML += "Save !"
                     resolve()
                 }
             })
@@ -53,6 +53,7 @@ function readTXT(fileName) {
 };
 
 const decode = async (fileName, publicKey, filetype) => {
+    let ts0 = Date.now();
     let paperTXT = await readTXT(fileName);
     let paperBody = paperTXT
         .split("\n\n")
@@ -60,6 +61,8 @@ const decode = async (fileName, publicKey, filetype) => {
         .pop();
     paperBody = paperBody.toString('base64')
     paperTXT = await decryptFile(paperBody, publicKey);
+    let ts1 = Date.now();
+    $('#decode_console').innerHTML += `Time: ${Math.floor((ts1 - ts0) / 1000)}s<br />`
     buf2pdf(paperTXT, filetype);
 }
 

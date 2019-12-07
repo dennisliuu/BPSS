@@ -16,7 +16,7 @@ const pdf2bs64 = (fileName) => {
         fs.writeFile(path.join(__dirname, "buf/send64.txt"), bs64, err => {
             if (err) throw err;
             else {
-                $('#send_console').innerHTML += "pdf convert base64 complete!<br />"
+                // $('#send_console').innerHTML += "pdf convert base64 complete!<br />"
                 resolve()
             }
         })
@@ -48,12 +48,15 @@ const sender = eA => {
 
 // Send file
 const sender_main = async (orcid, fileName, privateKey) => {
+    let ts0 = Date.now();
     await pdf2bs64(fileName);
     let paperTXT = await readTXT()
     let eA = await encryptFile(paperTXT, privateKey)
     eA = orcid + '\n\n' + eA
     fs.writeFileSync(path.join(__dirname, "buf/send_orcid.txt"), eA)
     await sender(eA)
+    let ts1 = Date.now();
+    $('#send_console').innerHTML += `Time: ${Math.floor((ts1 - ts0) / 1000)}s<br />`
     nc.port(2389)
         .serve(path.join(__dirname, "buf/send_s.txt"))
         .listen();
