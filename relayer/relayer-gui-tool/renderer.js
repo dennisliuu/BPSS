@@ -17,24 +17,14 @@ $('#recBtn').addEventListener("click", function () {
     receiver(ip)
 })
 
-function getRadioValue() { 
-    var ele = document.getElementsByName('gender'); 
-    for(i = 0; i < ele.length; i++) { 
-        if(ele[i].checked) 
-        document.getElementById("result").innerHTML
-                = "Gender: "+ele[i].value; 
-    } 
-} 
-
 $('#decodeBtn').addEventListener("click", function () {
     let fileName = $('#decodeFile').files[0].path
     let publicKey = $('#inputPublickey').value
-    let filetype = 1
+    let filetype = null
     let selection = document.querySelectorAll('input[name="typeRadios"]')
-    for(i = 0; i < selection.length; i++) { 
-        if(selection[i].checked) 
-        filetype = selection[i].value
-    } 
-    console.log({fileName, publicKey, filetype})
+    for (i = 0; i < selection.length; i++) {
+        if (selection[i].checked)
+            filetype = selection[i].value
+    }
     decode(fileName, publicKey, filetype)
 })
