@@ -1,10 +1,6 @@
 const fs = require("fs");
 const path = require("path");
 
-// Netcat tool
-const NetcatClient = require("netcat/client");
-const nc = new NetcatClient();
-
 const NodeRSA = require('node-rsa')
 
 const buf2pdf = (paperTXT, filetype) => {
