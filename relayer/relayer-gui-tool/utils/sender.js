@@ -24,12 +24,14 @@ const pdf2bs64 = (fileName) => {
 }
 
 // Read file
-const readTXT = () => {
+const readTXT = (fileName) => {
     return new Promise(resolve => {
-        setTimeout(() => {
-            let data = fs.readFileSync(path.join(__dirname, "buf/send64.txt"))
-            resolve(data);
-        }, 2000);
+        let data = fs.readFileSync(fileName, "utf8")
+        resolve(data)
+        // setTimeout(() => {
+        //     let data = fs.readFileSync(path.join(__dirname, "buf/send64.txt"))
+        //     resolve(data);
+        // }, 2000);
     });
 };
 
@@ -49,14 +51,14 @@ const sender = eA => {
 // Send file
 const sender_main = async (orcid, fileName, privateKey) => {
     let ts0 = Date.now();
-    await pdf2bs64(fileName);
-    let paperTXT = await readTXT()
+    // await pdf2bs64(fileName);
+    let paperTXT = await readTXT(fileName)
     let eA = await encryptFile(paperTXT, privateKey)
     eA = orcid + '\n\n' + eA
-    fs.writeFileSync(path.join(__dirname, "buf/send_orcid.txt"), eA)
+    // fs.writeFileSync(path.join(__dirname, "buf/send_orcid.txt"), eA)
     await sender(eA)
     let ts1 = Date.now();
-    $('#send_console').innerHTML += `Time: ${((ts1-ts0)/1000).toFixed(2)}s<br />`
+    $('#send_console').innerHTML += `Time: ${((ts1 - ts0) / 1000).toFixed(2)}s<br />`
     nc.port(2389)
         .serve(path.join(__dirname, "buf/send_s.txt"))
         .listen();

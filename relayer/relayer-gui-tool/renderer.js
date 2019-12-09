@@ -1,9 +1,15 @@
 // Load custom lib
+const hashFile = require('./utils/hashFile')
 const sender = require('./utils/sender')
 const receiver = require('./utils/receiver')
 const decode = require('./utils/decode')
 
 // const $ = document.querySelector.bind(document)
+
+$('#hashBtn').addEventListener("click", function () {
+    let path = $('#hashFile').files[0].path
+    hashFile(path)
+})
 
 $('#sendBtn').addEventListener("click", function () {
     let path = $('#uploadFile').files[0].path

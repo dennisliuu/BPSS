@@ -5,29 +5,27 @@ const NodeRSA = require('node-rsa')
 
 const buf2pdf = (paperTXT, filetype) => {
     new Promise((resolve, reject) => {
-        let buf = new Buffer.from(paperTXT.toString(), 'base64')
+        // let buf = new Buffer.from(paperTXT.toString(), 'base64')
         if (filetype == 'pdf') {
-            fs.writeFile(path.join(__dirname, `buf/paper_${Date.now()}.pdf`), buf, err => {
+            fs.writeFile(path.join(__dirname, `buf/paper_${Date.now()}.pdf`), paperTXT, err => {
                 if (err) throw err;
                 else {
-                    // console.log("Save !");
                     $('#decode_console').innerHTML += "Save !"
                     resolve()
                 }
             })
         }
         else {
-            fs.writeFile(path.join(__dirname, `buf/paper_${Date.now()}.txt`), buf, err => {
+            fs.writeFile(path.join(__dirname, `buf/paper_${Date.now()}.txt`), paperTXT, err => {
                 if (err) throw err;
                 else {
-                    // console.log("Save !");
                     $('#decode_console').innerHTML += "Save !"
                     resolve()
                 }
             })
         }
     })
-};
+}
 
 function decryptFile(paperTXT, pub) {
 	return new Promise(resolve => {
@@ -39,27 +37,23 @@ function decryptFile(paperTXT, pub) {
 
 function readTXT(fileName) {
     return new Promise(resolve => {
-        // let data = fs.readFileSync("./src/buf/send.txt", "utf8")
-        // resolve(data);
-        setTimeout(() => {
-            let data = fs.readFileSync(fileName, "utf8")
-            resolve(data);
-        }, 2000);
-    });
-};
+        let data = fs.readFileSync(fileName, "utf8")
+        resolve(data)
+    })
+}
 
 const decode = async (fileName, publicKey, filetype) => {
-    let ts0 = Date.now();
-    let paperTXT = await readTXT(fileName);
+    let ts0 = Date.now()
+    let paperTXT = await readTXT(fileName)
     let paperBody = paperTXT
         .split("\n\n")
         .slice(-1)
-        .pop();
-    paperBody = paperBody.toString('base64')
-    paperTXT = await decryptFile(paperBody, publicKey);
-    let ts1 = Date.now();
+        .pop()
+    // paperBody = paperBody.toString('base64')
+    paperTXT = await decryptFile(paperBody, publicKey)
+    let ts1 = Date.now()
     $('#decode_console').innerHTML += `Time: ${((ts1-ts0)/1000).toFixed(2)}s<br />`
-    buf2pdf(paperTXT, filetype);
+    buf2pdf(paperTXT, filetype)
 }
 
 module.exports = decode
