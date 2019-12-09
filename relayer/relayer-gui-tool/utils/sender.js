@@ -24,7 +24,7 @@ const pdf2bs64 = (fileName) => {
 }
 
 // Read file
-function readTXT() {
+const readTXT = () => {
     return new Promise(resolve => {
         setTimeout(() => {
             let data = fs.readFileSync(path.join(__dirname, "buf/send64.txt"))
@@ -56,7 +56,7 @@ const sender_main = async (orcid, fileName, privateKey) => {
     fs.writeFileSync(path.join(__dirname, "buf/send_orcid.txt"), eA)
     await sender(eA)
     let ts1 = Date.now();
-    $('#send_console').innerHTML += `Time: ${Math.floor((ts1 - ts0) / 1000)}s<br />`
+    $('#send_console').innerHTML += `Time: ${((ts1-ts0)/1000).toFixed(2)}s<br />`
     nc.port(2389)
         .serve(path.join(__dirname, "buf/send_s.txt"))
         .listen();

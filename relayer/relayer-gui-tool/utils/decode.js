@@ -62,7 +62,7 @@ const decode = async (fileName, publicKey, filetype) => {
     paperBody = paperBody.toString('base64')
     paperTXT = await decryptFile(paperBody, publicKey);
     let ts1 = Date.now();
-    $('#decode_console').innerHTML += `Time: ${Math.floor((ts1 - ts0) / 1000)}s<br />`
+    $('#decode_console').innerHTML += `Time: ${((ts1-ts0)/1000).toFixed(2)}s<br />`
     buf2pdf(paperTXT, filetype);
 }
 

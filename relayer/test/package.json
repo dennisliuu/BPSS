@@ -1,16 +1,12 @@
 {
-  "name": "sender_receiver",
+  "name": "test",
   "version": "1.0.0",
   "description": "",
-  "main": "receiver.js",
+  "main": "index.js",
   "scripts": {
-    "test": "node sender.js && node receiver.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "netcat": "^1.4.0",
-    "node-rsa": "^1.0.5"
-  }
+  "license": "ISC"
 }
