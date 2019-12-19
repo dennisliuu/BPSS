@@ -14,8 +14,8 @@ $('#hashBtn').addEventListener("click", function () {
 $('#sendBtn').addEventListener("click", function () {
     let path = $('#uploadFile').files[0].path
     let orcid = $('#inputORCID').value
-    let privateKey = $('#inputPrivatekey').value
-    sender(orcid, path, privateKey)
+    let inputKey = $('#inputKey').value
+    sender(orcid, path, inputKey)
 })
 
 $('#recBtn').addEventListener("click", function () {
@@ -25,12 +25,12 @@ $('#recBtn').addEventListener("click", function () {
 
 $('#decodeBtn').addEventListener("click", function () {
     let fileName = $('#decodeFile').files[0].path
-    let publicKey = $('#inputPublickey').value
+    let inputKey = $('#inputKey2').value
     let filetype = null
     let selection = document.querySelectorAll('input[name="typeRadios"]')
     for (i = 0; i < selection.length; i++) {
         if (selection[i].checked)
             filetype = selection[i].value
     }
-    decode(fileName, publicKey, filetype)
+    decode(fileName, inputKey, filetype)
 })
