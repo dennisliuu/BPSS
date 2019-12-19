@@ -24,17 +24,20 @@ app.use(koaBody({
   multipart: true,
   encoding: 'gzip',
   formidable: {
-    uploadDir: path.join(__dirname, 'public/upload'),
+    uploadDir: path.join(__dirname, 'public/pending'),
     keepExtensions: true,
+    // maxFieldsSize: 2 * 1024 * 1024,
     onFileBegin: (name, file) => {
       console.log(file);
       const dirName = getUploadDirName();
-      const dir = path.join(__dirname, `public/upload/${dirName}`);
+      const dir = path.join(__dirname, `public/pending/${dirName}`);
       checkDirExist(dir);
       const fileName = file.name;
       file.path = `${dir}/${fileName}`;
       app.context.uploadpath = app.context.uploadpath ? app.context.uploadpath : {};
       app.context.uploadpath[name] = `${dirName}/${fileName}`;
+     
+
     },
   }
 }));

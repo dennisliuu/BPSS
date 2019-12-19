@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+      
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+	
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css" />
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+     <link href="https://fonts.googleapis.com/css?family=Alatsi&display=swap" rel="stylesheet">
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    </head>
+     <style>
+
+     body {
+              
+        background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.2)), url("../static/pexels-207962.jpg") no-repeat 10% 10%/ cover;
+		font-family: 'Alatsi', sans-serif;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-attachment: fixed;
+     }
+	 .bg-white {background-color: #F0F8FF !important;}
+    
+    </style>    
+    </head>
+    <body>
+        <div class="container">
+			<header>
+				<p class="pt-5 text-center">
+					<span class="text-center h1"><big>Information</big></span>
+				</p>
+			</header>
+			<div class="rounded">
+				<table class="table table-borderless bg-white rounded h5 "  width="10">	
+					<tbody>
+						<tr>
+						<th scope="row">Name</th>
+						<td>{{Name}}</td>
+						</tr>
+						
+						<tr>
+						<th scope="row">Mail</th>
+						<td>{{Mail}}</td>
+						</tr>
+						
+						<tr>
+						<th scope="row">ORCID</th>
+						<td>{{Orcid}}</td>
+						</tr>
+						
+						<tr>
+						<th scope="row">File Name</th>
+						<td>{{Filename}}</td>
+						</tr>
+						
+						<tr>
+						<th scope="row">Title</th>
+						<td>{{Title}}</td>
+						</tr>
+						
+						<tr>
+						<th scope="row">Abstract</th>
+						<td>{{Abstract}}</td>
+						</tr>
+						
+						<tr>
+						<th scope="row">Public key of author list</th>
+						<td>{{PubKey}}</td>
+						</tr>
+						
+					</tbody>
+				</table>
+				<a href="javascript:history.back()" class="btn btn-secondary active float-right" role="button" aria-pressed="true">OK</a>
+			</div>
+		</div>
+    </body>
+</html>
